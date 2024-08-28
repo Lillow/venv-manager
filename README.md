@@ -75,7 +75,6 @@ django_project = DjangoCreator(project_name="my_django_project", venv=venv)
 
     Python 3.x
     venv para a criação de ambientes virtuais
-    pytest
 
 ## Contribuição
 
