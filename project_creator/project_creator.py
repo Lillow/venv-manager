@@ -14,3 +14,11 @@ class ProjectCreator(metaclass=ABCMeta):
     @abstractmethod
     def _create_project(self) -> bool:
         pass
+
+    def _directory_creator(self, dirs: list):
+        for directory in dirs:
+            directory = self._base_dir / directory
+            directory.mkdir(parents=True, exist_ok=True)
+
+    def _file_creator(self, file_name, file_content):
+        (self._base_dir / file_name).write_text(file_content)
