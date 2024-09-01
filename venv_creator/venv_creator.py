@@ -27,6 +27,7 @@ class VenvCreator:
     def execute_venv_command(self, command: str) -> bool:
         complete_command = f"{self.__venv_path}\\activate && {command} && deactivate"
         checker = False
+        result = None
         try:
             result = subprocess.run(
                 complete_command, shell=True, capture_output=True, text=True)
