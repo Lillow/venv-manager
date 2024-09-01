@@ -25,7 +25,8 @@ class VenvCreator:
         return True
 
     def execute_venv_command(self, command: str) -> bool:
-        complete_command = f"{self.__venv_path}\\activate && {command} && deactivate"
+        # complete_command = f"{self.__venv_path}\\activate && {command} && deactivate"
+        complete_command = f"{self.__venv_path}\\activate && {command}"
         checker = False
         result = None
         try:
