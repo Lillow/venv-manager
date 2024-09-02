@@ -4,13 +4,12 @@ from project_creator.flask_creator import FlaskCreator as Flask
 from project_creator.project_creator import ProjectCreator as Project
 from time import sleep
 
-print('''
-█▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █▀█ █▀█
-█▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄▄ █▀▄ ██▄ █▀█ ░█░ █▄█ █▀▄
-      ''')
-
 
 def menu() -> None:
+    print('''
+    █▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █▀█ █▀█
+    █▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄▄ █▀▄ ██▄ █▀█ ░█░ █▄█ █▀▄
+        ''')
     venv = create_venv()
     option(venv)
 
@@ -42,7 +41,7 @@ def option(venv: Venv) -> None:
 
 
 def create_venv() -> Venv:
-    venv_name = input("Virtual environment name: ")
+    venv_name = input("Virtual environment name (default venv): ")
     print("Creating or finding venv...\n")
     if (venv_name == ""):
         venv = Venv()
