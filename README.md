@@ -40,11 +40,13 @@ Este módulo define a classe `FlaskCreator`, que é responsável por criar e ger
 
 1. **Baixar o Executável:** 
     - Baixe o arquivo `app.exe`.
-    - ![Imagem ilustrativa de como baixar](path/to/image)
+    - ![app-img](https://github.com/user-attachments/assets/aa10e5d1-6a8f-4edd-8b7c-a74b9f818d29)
+    - ![download-img](https://github.com/user-attachments/assets/ba067cc6-103f-4443-b552-ec6064c86d29)
 
 2. **Executar o Arquivo:**
     - Coloque o arquivo no diretório onde deseja criar o projeto e execute-o.
-    - ![Imagem ilustrativa do `app.exe` em execução](path/to/image)
+    - ![app-img2](https://github.com/user-attachments/assets/514faf76-db9a-4065-b781-241aad96fb93)
+
 
 3. **Criar ou Selecionar um Ambiente Virtual:**
     - Digite o nome do ambiente virtual para criá-lo ou encontrá-lo, ou simplesmente pressione enter para usar o nome padrão "venv".
