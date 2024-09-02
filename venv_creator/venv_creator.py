@@ -1,7 +1,7 @@
 import os
 import platform
 import subprocess
-import venv
+# import venv
 
 
 class VenvCreator:
@@ -17,11 +17,15 @@ class VenvCreator:
     def __create_venv(self) -> bool:
 
         try:
-            venv.create(self._venv_name, with_pip=True)
+            # venv.create(self._venv_name, with_pip=True)
+            complete_command = f"python -m venv {self._venv_name}"
+            subprocess.run(complete_command, shell=True, capture_output=True, text=True)
         except Exception as e:
             print(f"Erro ao criar o ambiente virtual: {e}")
             return False
-        print(f"Ambiente virtual '{self._venv_name}' criado com sucesso.")
+        # print("Saída:\n", result.stdout)
+        # print("Erros:\n", result.stderr)
+        # print(f"Ambiente virtual '{self._venv_name}' criado com sucesso.")
         return True
 
     def execute_venv_command(self, command: str) -> bool:
