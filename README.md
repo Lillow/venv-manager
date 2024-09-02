@@ -65,7 +65,3 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull re
 ## 5. Licença
 
 Este projeto é licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
----
-
-Danillo Silva `[@Lillow]`.
