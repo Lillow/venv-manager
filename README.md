@@ -68,4 +68,4 @@ Este projeto é licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mai
 
 ---
 
-Danillo Silva`[@Lillow]`.
+Danillo Silva `[@Lillow]`.
