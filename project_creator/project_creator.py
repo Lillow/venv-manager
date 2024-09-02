@@ -22,3 +22,7 @@ class ProjectCreator(metaclass=ABCMeta):
 
     def _file_creator(self, file_name, file_content):
         (self._base_dir / file_name).write_text(file_content)
+
+    def __str__(self) -> str:
+        name = self._project_name
+        return name

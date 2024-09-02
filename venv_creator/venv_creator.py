@@ -51,3 +51,6 @@ class VenvCreator:
     def list_library(self) -> bool:
         return self.execute_venv_command(f"pip list")
     
+    def __str__(self) -> str:
+        name = self._venv_name
+        return name
