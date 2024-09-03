@@ -9,11 +9,11 @@ class FlaskCreator(ProjectCreator):
             if not self._venv.check_library("flask"):
                 self._venv.install_library("flask")
             dirs = [
-                'templates',
-                'static',
-                'static/css',
-                'static/js',
-                'static/images',
+                "templates",
+                "static",
+                "static/css",
+                "static/js",
+                "static/images",
             ]
             self._directory_creator(dirs)
 
@@ -42,10 +42,10 @@ class FlaskCreator(ProjectCreator):
 </body>
 </html>
 """
-            self._file_creator("templates/index.html", app_py_content)
+            self._file_creator("templates/index.html", index_html_content)
 
             requirements_content = "Flask"
-            self._file_creator("requirements.txt", app_py_content)
+            self._file_creator("requirements.txt", requirements_content)
 
             print(f"Projeto {self._project_name} criado com sucesso!")
             checker = True
