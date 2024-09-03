@@ -6,6 +6,8 @@ class FlaskCreator(ProjectCreator):
     def _create_project(self) -> bool:
         checker = False
         try:
+            if not self._venv.check_library("flask"):
+                self._venv.install_library("flask")
             dirs = [
                 'templates',
                 'static',
