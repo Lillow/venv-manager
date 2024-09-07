@@ -6,10 +6,12 @@ from time import sleep
 
 
 def menu() -> None:
-    print('''
+    print(
+        """
     █▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █▀█ █▀█
     █▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄▄ █▀▄ ██▄ █▀█ ░█░ █▄█ █▀▄
-        ''')
+        """
+    )
     venv = create_venv()
     option(venv)
 
@@ -20,21 +22,24 @@ def option(venv: Venv) -> None:
         print("2 - Create Flask project")
         print("3 - Install library")
         print("4 - List libraries")
+        print("5 - Execute command")
         print("0 - Leave")
         option = input("\nChoose an option: ")
 
         match option:
-            case '1':
+            case "1":
                 project = create_project(venv, "Django")
                 print(project)
-            case '2':
+            case "2":
                 project = create_project(venv, "Flask")
                 print(project)
-            case '3':
+            case "3":
                 install_library(venv)
-            case '4':
+            case "4":
                 list_library(venv)
-            case '0':
+            case "5":
+                execute_command(venv)
+            case "0":
                 print("Leaving...")
                 sleep(2)
                 break
@@ -43,7 +48,7 @@ def option(venv: Venv) -> None:
 def create_venv() -> Venv:
     venv_name = input("Virtual environment name (default venv): ")
     print("Creating or finding venv...\n")
-    if (venv_name == ""):
+    if venv_name == "":
         venv = Venv()
     else:
         venv = Venv(venv_name)
@@ -54,9 +59,9 @@ def create_project(venv: Venv, project_tipe: str) -> Project:
     project_name = input("Project name: ")
     project = None
     print("creating..\n")
-    if (project_tipe == 'Django'):
+    if project_tipe == "Django":
         project = Django(venv, project_name)
-    elif (project_tipe == 'Flask'):
+    elif project_tipe == "Flask":
         project = Flask(venv, project_name)
     return project
 
@@ -64,7 +69,7 @@ def create_project(venv: Venv, project_tipe: str) -> Project:
 def install_library(venv: Venv) -> None:
     library_name = input("Library name: ")
     print("Installing...\n")
-    if (venv.install_library(library_name)):
+    if venv.install_library(library_name):
         print(f"Library {library_name} installed correctly")
     else:
         print(f"Library {library_name} not installed")
@@ -72,5 +77,12 @@ def install_library(venv: Venv) -> None:
 
 def list_library(venv: Venv) -> None:
     print("Finding...\n")
-    if (not venv.list_library()):
+    if not venv.list_library():
         print("Failed to find libraries")
+
+
+def execute_command(venv: Venv) -> None:
+    command = input("Command: ")
+    print("\nRunning...\n")
+    if not venv.execute_venv_command(command):
+        print("Failed to execute command")
