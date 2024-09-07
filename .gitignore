@@ -193,4 +193,7 @@ pyrightconfig.json
 .history
 .ionide
 
+### ignore executable creator ###
+exe_create.py
+
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
