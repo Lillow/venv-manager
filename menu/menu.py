@@ -18,11 +18,34 @@ def menu() -> None:
 
 def option(venv: Venv) -> None:
     while True:
+        print("\n1 - Create project")
+        print("2 - Install library")
+        print("3 - List libraries")
+        print("4 - Execute command")
+        print("0 - Leave")
+        option = input("\nChoose an option: ")
+
+        match option:
+            case "1":
+                create_project_options(venv)
+            case "2":
+                install_library(venv)
+            case "3":
+                list_library(venv)
+            case "4":
+                execute_command(venv)
+                limpar_tela()
+            case "0":
+                print("Leaving...")
+                sleep(2)
+                break
+
+
+def create_project_options(venv: Venv):
+    while True:
         print("\n1 - Create Django project")
         print("2 - Create Flask project")
-        print("3 - Install library")
-        print("4 - List libraries")
-        print("5 - Execute command")
+        print("3 - Create Custom project")
         print("0 - Leave")
         option = input("\nChoose an option: ")
 
@@ -30,15 +53,14 @@ def option(venv: Venv) -> None:
             case "1":
                 project = create_project(venv, "Django")
                 print(project)
+                break
             case "2":
                 project = create_project(venv, "Flask")
                 print(project)
+                break
             case "3":
-                install_library(venv)
-            case "4":
-                list_library(venv)
-            case "5":
-                execute_command(venv)
+                project = create_project(venv, "Custom")
+                break
             case "0":
                 print("Leaving...")
                 sleep(2)
@@ -63,6 +85,8 @@ def create_project(venv: Venv, project_tipe: str) -> Project:
         project = Django(venv, project_name)
     elif project_tipe == "Flask":
         project = Flask(venv, project_name)
+    elif project_tipe == "Custom":
+        project = None
     return project
 
 
