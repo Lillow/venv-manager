@@ -2,95 +2,75 @@ from venv_creator.venv_creator import VenvCreator as Venv
 from project_creator.django_creator import DjangoCreator as Django
 from project_creator.flask_creator import FlaskCreator as Flask
 from project_creator.project_creator import ProjectCreator as Project
+from menu.options import Options
+from venv_creator.venv_creator import clean_screen
 from time import sleep
 
 
 def menu() -> None:
+    """Exibe o menu principal e gerencia as opções do usuário."""
+    print_banner()
+    venv = create_venv()
+    show_main_menu(venv)
+
+
+def print_banner() -> None:
+    """Exibe o banner inicial do programa."""
+    clean_screen()
     print(
         """
     █▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █▀█ █▀█
     █▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄▄ █▀▄ ██▄ █▀█ ░█░ █▄█ █▀▄
         """
     )
-    venv = create_venv()
-    option(venv)
 
 
-def option(venv: Venv) -> None:
-    while True:
-        print("\n1 - Create project")
-        print("2 - Install library")
-        print("3 - List libraries")
-        print("4 - Execute command")
-        print("0 - Leave")
-        option = input("\nChoose an option: ")
-
-        match option:
-            case "1":
-                create_project_options(venv)
-            case "2":
-                install_library(venv)
-            case "3":
-                list_library(venv)
-            case "4":
-                execute_command(venv)
-                limpar_tela()
-            case "0":
-                print("Leaving...")
-                sleep(2)
-                break
+def show_main_menu(venv: Venv) -> None:
+    """Cria e exibe o menu principal."""
+    main_menu = Options(
+        {
+            1: ("Create project", lambda: create_project_options(venv)),
+            2: ("Install library", lambda: install_library(venv)),
+            3: ("List libraries", lambda: list_library(venv)),
+            4: ("Execute command", lambda: execute_command(venv)),
+        }
+    )
+    main_menu.choice()
 
 
-def create_project_options(venv: Venv):
-    while True:
-        print("\n1 - Create Django project")
-        print("2 - Create Flask project")
-        print("3 - Create Custom project")
-        print("0 - Leave")
-        option = input("\nChoose an option: ")
-
-        match option:
-            case "1":
-                project = create_project(venv, "Django")
-                print(project)
-                break
-            case "2":
-                project = create_project(venv, "Flask")
-                print(project)
-                break
-            case "3":
-                project = create_project(venv, "Custom")
-                break
-            case "0":
-                print("Leaving...")
-                sleep(2)
-                break
+def create_project_options(venv: Venv) -> None:
+    """Exibe o menu de opções para criação de projeto."""
+    project_menu = Options(
+        {
+            1: ("Create Django project", lambda: create_project(venv, "Django")),
+            2: ("Create Flask project", lambda: create_project(venv, "Flask")),
+            3: ("Create Custom project", lambda: create_project(venv, "Custom")),
+        }
+    )
+    project_menu.choice()
 
 
 def create_venv() -> Venv:
+    """Cria ou encontra um ambiente virtual."""
     venv_name = input("Virtual environment name (default venv): ")
     print("Creating or finding venv...\n")
-    if venv_name == "":
-        venv = Venv()
-    else:
-        venv = Venv(venv_name)
-    return venv
+    return Venv(venv_name) if venv_name else Venv()
 
 
-def create_project(venv: Venv, project_tipe: str) -> Project:
+def create_project(venv: Venv, project_type: str) -> Project:
+    """Cria um projeto com o tipo especificado."""
     project_name = input("Project name: ")
-    project = None
-    print("creating..\n")
-    if project_tipe == "Django":
-        project = Django(venv, project_name)
-    elif project_tipe == "Flask":
-        project = Flask(venv, project_name)
-    elif project_tipe == "Custom":
-        project = None
-    return project
+    print("Creating...\n")
+    if project_type == "Django":
+        return Django(venv, project_name)
+    elif project_type == "Flask":
+        return Flask(venv, project_name)
+    elif project_type == "Custom":
+        return None
 
 
 def install_library(venv: Venv) -> None:
+    """Instala uma biblioteca no ambiente virtual."""
     library_name = input("Library name: ")
     print("Installing...\n")
     if venv.install_library(library_name):
@@ -100,12 +80,14 @@ def install_library(venv: Venv) -> None:
 
 
 def list_library(venv: Venv) -> None:
+    """Lista as bibliotecas instaladas no ambiente virtual."""
     print("Finding...\n")
     if not venv.list_library():
         print("Failed to find libraries")
 
 
 def execute_command(venv: Venv) -> None:
+    """Executa um comando no ambiente virtual."""
     command = input("Command: ")
     print("\nRunning...\n")
     if not venv.execute_venv_command(command):
