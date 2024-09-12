@@ -5,51 +5,46 @@ import subprocess
 
 class VenvCreator:
     def __init__(self, venv_name: str = "venv") -> None:
-
         self._venv_name = venv_name
         self.__system = platform.system()
+        self.__venv_path = self._get_venv_path(venv_name)
         self.is_created = (
             self.__create_venv() if not os.path.exists(venv_name) else True
         )
-        # self.__venv_path = f".\\{venv_name}\\Scripts" if self.__system == "Windows" else f"./{venv_name}/bin/"
-        self.__venv_path = (
-            f".\\{venv_name}\\Scripts"
-            if self.__system == "Windows"
-            else f"./{venv_name}/bin/"
-        )
+
+    def _get_venv_path(self, venv_name: str) -> str:
+        if self.__system == "Windows":
+            return f".\\{venv_name}\\Scripts"
+        return f"./{venv_name}/bin/"
 
     def __create_venv(self) -> bool:
-
         try:
-            # venv.create(self._venv_name, with_pip=True)
             complete_command = f"python -m venv {self._venv_name}"
-            subprocess.run(complete_command, shell=True, capture_output=True, text=True)
+            result = subprocess.run(
+                complete_command, shell=True, capture_output=True, text=True
+            )
+            if result.returncode == 0:
+                print(f"Ambiente virtual '{self._venv_name}' criado com sucesso.")
+                return True
+            else:
+                print(f"Erro ao criar o ambiente virtual: {result.stderr}")
+                return False
         except Exception as e:
             print(f"Erro ao criar o ambiente virtual: {e}")
             return False
-        # print("Saída:\n", result.stdout)
-        # print("Erros:\n", result.stderr)
-        # print(f"Ambiente virtual '{self._venv_name}' criado com sucesso.")
-        return True
 
     def execute_venv_command(self, command: str) -> bool:
-        # complete_command = f"{self.__venv_path}\\activate && {command} && deactivate"
         complete_command = f"{self.__venv_path}\\activate && {command}"
-        checker = False
-        result = None
         try:
             result = subprocess.run(
                 complete_command, shell=True, capture_output=True, text=True
             )
-            # if result.stdout
-            if result.stdout != "":
-                checker = True
+            print("Saída:\n", result.stdout.strip())
+            print("Erros:\n", result.stderr.strip())
+            return result.returncode == 0
         except Exception as e:
-            print(f"Ocorreu um erro: {e}")
-
-        print("Saída:\n", result.stdout)
-        print("Erros:\n", result.stderr)
-        return checker
+            print(f"Ocorreu um erro ao executar o comando: {e}")
+            return False
 
     def install_library(self, library_name: str) -> bool:
         return self.execute_venv_command(f"pip install {library_name}")
@@ -58,15 +53,11 @@ class VenvCreator:
         return self.execute_venv_command(f"python -m {library_name} --version")
 
     def list_library(self) -> bool:
-        return self.execute_venv_command(f"pip list")
+        return self.execute_venv_command("pip list")
 
     def __str__(self) -> str:
-        name = self._venv_name
-        return name
+        return self._venv_name
 
 
-def clean_screen():
-    if os.name == "nt":
-        os.system("cls")
-    else:
-        os.system("clear")
+def clean_screen() -> None:
+    os.system("cls" if os.name == "nt" else "clear")

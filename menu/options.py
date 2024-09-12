@@ -10,14 +10,11 @@ except ImportError:
 
 
 def wait_for_keypress() -> None:
-    """Aguarda o usuário pressionar qualquer tecla."""
     print("\nPress any key to continue...")
 
     try:
-        # Método para Windows
         msvcrt.getch()
     except ImportError:
-        # Método para Linux/macOS
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
         try:
@@ -42,7 +39,6 @@ class Options:
         print(f"{self._exit_option} - Leave")
 
     def choice(self) -> None:
-        """Permite ao usuário escolher uma opção do menu."""
         while True:
             self.show()
             option = input("\nChoose an option: ")

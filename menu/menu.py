@@ -8,14 +8,12 @@ from time import sleep
 
 
 def menu() -> None:
-    """Exibe o menu principal e gerencia as opções do usuário."""
     print_banner()
     venv = create_venv()
     show_main_menu(venv)
 
 
 def print_banner() -> None:
-    """Exibe o banner inicial do programa."""
     clean_screen()
     print(
         """
@@ -26,7 +24,6 @@ def print_banner() -> None:
 
 
 def show_main_menu(venv: Venv) -> None:
-    """Cria e exibe o menu principal."""
     main_menu = Options(
         {
             1: ("Create project", lambda: create_project_options(venv)),
@@ -39,7 +36,6 @@ def show_main_menu(venv: Venv) -> None:
 
 
 def create_project_options(venv: Venv) -> None:
-    """Exibe o menu de opções para criação de projeto."""
     project_menu = Options(
         {
             1: ("Create Django project", lambda: create_project(venv, "Django")),
@@ -51,14 +47,12 @@ def create_project_options(venv: Venv) -> None:
 
 
 def create_venv() -> Venv:
-    """Cria ou encontra um ambiente virtual."""
     venv_name = input("Virtual environment name (default venv): ")
     print("Creating or finding venv...\n")
     return Venv(venv_name) if venv_name else Venv()
 
 
 def create_project(venv: Venv, project_type: str) -> Project:
-    """Cria um projeto com o tipo especificado."""
     project_name = input("Project name: ")
     print("Creating...\n")
     if project_type == "Django":
@@ -70,7 +64,6 @@ def create_project(venv: Venv, project_type: str) -> Project:
 
 
 def install_library(venv: Venv) -> None:
-    """Instala uma biblioteca no ambiente virtual."""
     library_name = input("Library name: ")
     print("Installing...\n")
     if venv.install_library(library_name):
@@ -80,14 +73,12 @@ def install_library(venv: Venv) -> None:
 
 
 def list_library(venv: Venv) -> None:
-    """Lista as bibliotecas instaladas no ambiente virtual."""
     print("Finding...\n")
     if not venv.list_library():
         print("Failed to find libraries")
 
 
 def execute_command(venv: Venv) -> None:
-    """Executa um comando no ambiente virtual."""
     command = input("Command: ")
     print("\nRunning...\n")
     if not venv.execute_venv_command(command):
