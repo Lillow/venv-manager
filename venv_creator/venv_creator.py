@@ -1,18 +1,22 @@
 import os
 import platform
 import subprocess
-# import venv
 
 
 class VenvCreator:
-
     def __init__(self, venv_name: str = "venv") -> None:
 
         self._venv_name = venv_name
         self.__system = platform.system()
-        self.is_created = self.__create_venv() if not os.path.exists(venv_name) else True
+        self.is_created = (
+            self.__create_venv() if not os.path.exists(venv_name) else True
+        )
         # self.__venv_path = f".\\{venv_name}\\Scripts" if self.__system == "Windows" else f"./{venv_name}/bin/"
-        self.__venv_path = f".\\{venv_name}\\Scripts" if self.__system == "Windows" else f"./{venv_name}/bin/"
+        self.__venv_path = (
+            f".\\{venv_name}\\Scripts"
+            if self.__system == "Windows"
+            else f"./{venv_name}/bin/"
+        )
 
     def __create_venv(self) -> bool:
 
@@ -35,9 +39,10 @@ class VenvCreator:
         result = None
         try:
             result = subprocess.run(
-                complete_command, shell=True, capture_output=True, text=True)
+                complete_command, shell=True, capture_output=True, text=True
+            )
             # if result.stdout
-            if(result.stdout != ''):
+            if result.stdout != "":
                 checker = True
         except Exception as e:
             print(f"Ocorreu um erro: {e}")
@@ -54,7 +59,14 @@ class VenvCreator:
 
     def list_library(self) -> bool:
         return self.execute_venv_command(f"pip list")
-    
+
     def __str__(self) -> str:
         name = self._venv_name
         return name
+
+
+def clean_screen():
+    if os.name == "nt":
+        os.system("cls")
+    else:
+        os.system("clear")
