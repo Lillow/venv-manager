@@ -1,6 +1,7 @@
 import os
 import platform
 import subprocess
+import msvcrt
 
 
 class VenvCreator:
@@ -24,27 +25,29 @@ class VenvCreator:
                 complete_command, shell=True, capture_output=True, text=True
             )
             if result.returncode == 0:
-                print(f"Ambiente virtual '{self._venv_name}' criado com sucesso.")
+                print(f"Virtual environment '{self._venv_name}' created successfully.")
                 return True
             else:
-                print(f"Erro ao criar o ambiente virtual: {result.stderr}")
+                print(f"Error creating virtual environment: {result.stderr}")
                 return False
         except Exception as e:
-            print(f"Erro ao criar o ambiente virtual: {e}")
+            print(f"Error creating the virtual environment: {e}")
             return False
 
     def execute_venv_command(self, command: str) -> bool:
         complete_command = f"{self.__venv_path}\\activate && {command}"
+        ret = False
         try:
             result = subprocess.run(
                 complete_command, shell=True, capture_output=True, text=True
             )
             print("Saída:\n", result.stdout.strip())
             print("Erros:\n", result.stderr.strip())
-            return result.returncode == 0
+            ret = result.returncode == 0
+            wait_for_keypress()
         except Exception as e:
-            print(f"Ocorreu um erro ao executar o comando: {e}")
-            return False
+            print(f"An error occurred while executing the command: {e}")
+        return ret
 
     def install_library(self, library_name: str) -> bool:
         return self.execute_venv_command(f"pip install {library_name}")
@@ -61,3 +64,12 @@ class VenvCreator:
 
 def clean_screen() -> None:
     os.system("cls" if os.name == "nt" else "clear")
+
+
+def wait_for_keypress() -> None:
+    print("\nPress any key to continue...")
+
+    try:
+        msvcrt.getch()
+    except Exception as e:
+        print(f"Error waiting for key press: {e}")
