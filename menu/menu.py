@@ -40,7 +40,7 @@ def create_project_options(venv: Venv) -> None:
         {
             1: ("Create Django project", lambda: create_project(venv, "Django")),
             2: ("Create Flask project", lambda: create_project(venv, "Flask")),
-            3: ("Create Custom project", lambda: create_project(venv, "Custom")),
+            # 3: ("Create Custom project", lambda: create_project(venv, "Custom")),
         }
     )
     project_menu.choice()
@@ -59,8 +59,8 @@ def create_project(venv: Venv, project_type: str) -> Project:
         return Django(venv, project_name)
     elif project_type == "Flask":
         return Flask(venv, project_name)
-    elif project_type == "Custom":
-        return None
+    # elif project_type == "Custom":
+        # return None
 
 
 def install_library(venv: Venv) -> None:
