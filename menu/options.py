@@ -8,10 +8,6 @@ except ImportError:
     import termios
     import tty
 
-
-def wait_for_keypress() -> None:
-    print("\nPress any key to continue...")
-
     try:
         msvcrt.getch()
     except ImportError:
@@ -32,7 +28,7 @@ class Options:
         self._exit_option = exit_option
 
     def show(self) -> None:
-        wait_for_keypress()
+        # wait_for_keypress()
         clean_screen()
         for key, (description, _) in self._options.items():
             print(f"{key} - {description}")
