@@ -41,8 +41,8 @@ class VenvCreator:
             result = subprocess.run(
                 complete_command, shell=True, capture_output=True, text=True
             )
-            print("Saída:\n", result.stdout.strip())
-            print("Erros:\n", result.stderr.strip())
+            print("Outputs:\n", result.stdout.strip())
+            print("Errors:\n", result.stderr.strip())
             ret = result.returncode == 0
             wait_for_keypress()
         except Exception as e:
