@@ -1,10 +1,10 @@
-from venv_creator.venv_creator import VenvCreator as Venv
-from project_creator.django_creator import DjangoCreator as Django
-from project_creator.flask_creator import FlaskCreator as Flask
-from project_creator.project_creator import ProjectCreator as Project
+from tabnanny import check
+from venv_creator.venv_creator import VenvCreator
+from project_creator.django_creator import DjangoCreator
+from project_creator.flask_creator import FlaskCreator
+from project_creator.project_creator import ProjectCreator
 from menu.options import Options
-from venv_creator.venv_creator import clean_screen
-from time import sleep
+from utils.terminal_utils import pause_and_clear, clean_screen
 
 
 def menu() -> None:
@@ -14,7 +14,6 @@ def menu() -> None:
 
 
 def print_banner() -> None:
-    clean_screen()
     print(
         """
     █▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █▀█ █▀█
@@ -23,7 +22,8 @@ def print_banner() -> None:
     )
 
 
-def show_main_menu(venv: Venv) -> None:
+def show_main_menu(venv: VenvCreator) -> None:
+    clean_screen()
     main_menu = Options(
         {
             1: ("Create project", lambda: create_project_options(venv)),
@@ -33,9 +33,11 @@ def show_main_menu(venv: Venv) -> None:
         }
     )
     main_menu.choice()
+    clean_screen()
 
 
-def create_project_options(venv: Venv) -> None:
+def create_project_options(venv: VenvCreator) -> None:
+    clean_screen()
     project_menu = Options(
         {
             1: ("Create Django project", lambda: create_project(venv, "Django")),
@@ -44,42 +46,49 @@ def create_project_options(venv: Venv) -> None:
         }
     )
     project_menu.choice()
+    clean_screen()
 
 
-def create_venv() -> Venv:
+def create_venv() -> VenvCreator:
     venv_name = input("Virtual environment name (default venv): ")
     print("Creating or finding venv...\n")
-    return Venv(venv_name) if venv_name else Venv()
+    return VenvCreator(venv_name) if venv_name else VenvCreator()
 
 
-def create_project(venv: Venv, project_type: str) -> Project:
-    project_name = input("Project name: ")
+def create_project(venv: VenvCreator, project_type: str) -> ProjectCreator:
+    project_name: str = input("Project name: ")
     print("Creating...\n")
     if project_type == "Django":
-        return Django(venv, project_name)
+        return DjangoCreator(venv, project_name)
     elif project_type == "Flask":
-        return Flask(venv, project_name)
+        return FlaskCreator(venv, project_name)
     # elif project_type == "Custom":
-        # return None
+    # return None
 
 
-def install_library(venv: Venv) -> None:
+def install_library(venv: VenvCreator) -> None:
+    clean_screen()
     library_name = input("Library name: ")
     print("Installing...\n")
-    if venv.install_library(library_name):
-        print(f"Library {library_name} installed correctly")
-    else:
-        print(f"Library {library_name} not installed")
+    print_line(venv.install_library(library_name))
+    pause_and_clear()
 
 
-def list_library(venv: Venv) -> None:
+def list_library(venv: VenvCreator) -> None:
+    clean_screen()
     print("Finding...\n")
-    if not venv.list_library():
-        print("Failed to find libraries")
+    print_line(venv.list_library())
+    pause_and_clear()
 
 
-def execute_command(venv: Venv) -> None:
+def execute_command(venv: VenvCreator) -> None:
+    clean_screen()
     command = input("Command: ")
     print("\nRunning...\n")
-    if not venv.execute_venv_command(command):
-        print("Failed to execute command")
+    print_line(venv.execute_venv_command(command))
+    pause_and_clear()
+
+
+def print_line(output):
+    for item in output:
+        print(item, "\n")

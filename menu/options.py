@@ -1,5 +1,4 @@
 from typing import Callable
-from venv_creator.venv_creator import clean_screen
 
 try:
     import msvcrt
@@ -29,7 +28,6 @@ class Options:
 
     def show(self) -> None:
         # wait_for_keypress()
-        clean_screen()
         for key, (description, _) in self._options.items():
             print(f"{key} - {description}")
         print(f"{self._exit_option} - Leave")

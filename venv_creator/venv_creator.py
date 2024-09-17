@@ -3,10 +3,6 @@ import platform
 import subprocess
 import sys
 
-# import venv
-
-# import msvcrt
-
 
 class VenvCreator:
     def __init__(self, venv_name: str = "venv") -> None:
@@ -43,51 +39,38 @@ class VenvCreator:
             print(f"Error creating the virtual environment: {e}")
             return False
 
-    def execute_venv_command(self, command: str) -> str:
+    def execute_venv_command(self, command: str) -> list[str]:
         complete_command = f"{self.__venv_path}\\activate && {command}"
         ret = False
-        output = str()
+        output: list[type[str]] = [str]
         try:
             result = subprocess.run(
                 complete_command, shell=True, capture_output=True, text=True
             )
-            output = f"""Outputs:\n{ result.stdout.strip()}
-Errors:\n{result.stderr.strip()}
-"""
-            # print("Outputs:\n", result.stdout.strip())
-            # print("Errors:\n", result.stderr.strip())
+            # output.append(f"Outputs:\n{ result.stdout.strip()}")
+            # output.append(f"Errors:\n{result.stderr.strip()})")
+            output.append(result.stdout.strip())
+            output.append(result.stderr.strip())
+
         except Exception as e:
-            output += f"\nAn error occurred while executing the command: {e}"
+            output.append(f"\nAn error occurred while executing the command: {e}")
             # print(f"\nAn error occurred while executing the command: {e}")
+        output = output[1:]
         return output
 
-    def install_library(self, library_name: str) -> bool:
+    def install_library(self, library_name: str) -> list[str]:
         return self.execute_venv_command(f"pip install {library_name}")
 
     def check_library(self, library_name: str) -> bool:
-        return self.execute_venv_command(f"python -m {library_name} --version")
+        output: list[str] = self.execute_venv_command(
+            f"python -m {library_name} --version"
+        )
+        if output[0] == "":
+            return False
+        return True
 
-    def list_library(self) -> bool:
-        print(self.execute_venv_command("pip list"))
-        # return self.execute_venv_command("pip list")
+    def list_library(self) -> list[str]:
+        return self.execute_venv_command("pip list")
 
     def __str__(self) -> str:
         return self._venv_name
-
-
-if __name__ == "__main__":
-    venv = VenvCreator()
-    venv.list_library()
-
-
-# def clean_screen() -> None:
-#     os.system("cls" if os.name == "nt" else "clear")
-
-
-# def wait_for_keypress() -> None:
-#     print("\nPress any key to continue...")
-
-#     try:
-#         msvcrt.getch()
-#     except Exception as e:
-#         print(f"Error waiting for key press: {e}")
