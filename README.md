@@ -58,8 +58,8 @@ This module defines the `FlaskManager` class, responsible for creating and manag
 2. **Install library:** Installs any Python package in the virtual environment by receiving the package name.
 3. **List libraries:** Lists all installed packages in the virtual environment.
 4. **Execute command:** Executes commands within the virtual environment.
-5. **Create executable:** Installs `pyinstaller` (if not already installed) and creates an executable from the specified file.
-6. **Exit:** Leaves the tool.
+5. <!-- **Create executable:** Installs `pyinstaller` (if not already installed) and creates an executable from the specified file. -->
+7. **Exit:** Leaves the tool.
 
 ## 4. Requirements
 
