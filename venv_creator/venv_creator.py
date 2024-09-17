@@ -1,15 +1,20 @@
 import os
 import platform
 import subprocess
-import msvcrt
+import sys
+
+# import venv
+
+# import msvcrt
 
 
 class VenvCreator:
     def __init__(self, venv_name: str = "venv") -> None:
-        self._venv_name = venv_name
-        self.__system = platform.system()
-        self.__venv_path = self._get_venv_path(venv_name)
-        self.is_created = (
+        self._venv_name: str = venv_name
+        self.__system: str = platform.system()
+        self.__venv_path: str = self._get_venv_path(venv_name)
+        self.is_created = True
+        self.is_created: bool = (
             self.__create_venv() if not os.path.exists(venv_name) else True
         )
 
@@ -20,10 +25,14 @@ class VenvCreator:
 
     def __create_venv(self) -> bool:
         try:
-            complete_command = f"python -m venv {self._venv_name}"
+            complete_command = f"{sys.executable} -m venv {self._venv_name}"
+
+            print("Creating or finding venv...")
+
             result = subprocess.run(
                 complete_command, shell=True, capture_output=True, text=True
             )
+
             if result.returncode == 0:
                 print(f"Virtual environment '{self._venv_name}' created successfully.")
                 return True
@@ -34,20 +43,23 @@ class VenvCreator:
             print(f"Error creating the virtual environment: {e}")
             return False
 
-    def execute_venv_command(self, command: str) -> bool:
+    def execute_venv_command(self, command: str) -> str:
         complete_command = f"{self.__venv_path}\\activate && {command}"
         ret = False
+        output = str()
         try:
             result = subprocess.run(
                 complete_command, shell=True, capture_output=True, text=True
             )
-            print("Outputs:\n", result.stdout.strip())
-            print("Errors:\n", result.stderr.strip())
-            ret = result.returncode == 0
-            wait_for_keypress()
+            output = f"""Outputs:\n{ result.stdout.strip()}
+Errors:\n{result.stderr.strip()}
+"""
+            # print("Outputs:\n", result.stdout.strip())
+            # print("Errors:\n", result.stderr.strip())
         except Exception as e:
-            print(f"An error occurred while executing the command: {e}")
-        return ret
+            output += f"\nAn error occurred while executing the command: {e}"
+            # print(f"\nAn error occurred while executing the command: {e}")
+        return output
 
     def install_library(self, library_name: str) -> bool:
         return self.execute_venv_command(f"pip install {library_name}")
@@ -56,20 +68,26 @@ class VenvCreator:
         return self.execute_venv_command(f"python -m {library_name} --version")
 
     def list_library(self) -> bool:
-        return self.execute_venv_command("pip list")
+        print(self.execute_venv_command("pip list"))
+        # return self.execute_venv_command("pip list")
 
     def __str__(self) -> str:
         return self._venv_name
 
 
-def clean_screen() -> None:
-    os.system("cls" if os.name == "nt" else "clear")
+if __name__ == "__main__":
+    venv = VenvCreator()
+    venv.list_library()
 
 
-def wait_for_keypress() -> None:
-    print("\nPress any key to continue...")
+# def clean_screen() -> None:
+#     os.system("cls" if os.name == "nt" else "clear")
 
-    try:
-        msvcrt.getch()
-    except Exception as e:
-        print(f"Error waiting for key press: {e}")
+
+# def wait_for_keypress() -> None:
+#     print("\nPress any key to continue...")
+
+#     try:
+#         msvcrt.getch()
+#     except Exception as e:
+#         print(f"Error waiting for key press: {e}")
