@@ -59,7 +59,7 @@ Este módulo define a classe `FlaskManager`, responsável por criar e gerenciar 
 3. **Listar bibliotecas:** Lista todas as bibliotecas instaladas no ambiente virtual.
 4. **Executar comando:** Executa comandos dentro do ambiente virtual.
 <!-- 5. **Criar executável:** Instala o `pyinstaller` (se necessário) e cria um executável do arquivo especificado. -->
-6. **Sair:** Encerra a ferramenta.
+5. **Sair:** Encerra a ferramenta.
 
 ## 4. Requisitos
 
