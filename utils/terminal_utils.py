@@ -18,3 +18,8 @@ def wait_for_keypress() -> None:
 def pause_and_clear() -> None:
     wait_for_keypress()
     clean_screen()
+
+
+def print_line(str_list: list[str]) -> None:
+    for item in str_list:
+        print(item, "\n")
