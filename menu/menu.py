@@ -3,8 +3,9 @@ from venv_creator.venv_creator import VenvCreator
 from project_creator.django_creator import DjangoCreator
 from project_creator.flask_creator import FlaskCreator
 from project_creator.project_creator import ProjectCreator
+from exe_creator.exe_creator import ExeCreator
 from menu.options import Options
-from utils.terminal_utils import pause_and_clear, clean_screen
+from utils.terminal_utils import pause_and_clear, clean_screen, print_line
 
 
 def menu() -> None:
@@ -30,6 +31,7 @@ def show_main_menu(venv: VenvCreator) -> None:
             2: ("Install library", lambda: install_library(venv)),
             3: ("List libraries", lambda: list_library(venv)),
             4: ("Execute command", lambda: execute_command(venv)),
+            5: ("Create executable", lambda: create_exe(venv)),
         }
     )
     main_menu.choice()
@@ -50,7 +52,7 @@ def create_project_options(venv: VenvCreator) -> None:
 
 
 def create_venv() -> VenvCreator:
-    venv_name = input("Virtual environment name (default venv): ")
+    venv_name: str = input("Virtual environment name (default venv): ")
     print("Creating or finding venv...\n")
     return VenvCreator(venv_name) if venv_name else VenvCreator()
 
@@ -66,9 +68,18 @@ def create_project(venv: VenvCreator, project_type: str) -> ProjectCreator:
     # return None
 
 
+def create_exe(venv: VenvCreator) -> None:
+    clean_screen()
+    file_path: str = input("File path: ")
+    print("Creating...\n")
+    exeCreator = ExeCreator(venv, file_path)
+    print_line(exeCreator._output)
+    pause_and_clear()
+
+
 def install_library(venv: VenvCreator) -> None:
     clean_screen()
-    library_name = input("Library name: ")
+    library_name: str = input("Library name: ")
     print("Installing...\n")
     print_line(venv.install_library(library_name))
     pause_and_clear()
@@ -83,12 +94,7 @@ def list_library(venv: VenvCreator) -> None:
 
 def execute_command(venv: VenvCreator) -> None:
     clean_screen()
-    command = input("Command: ")
+    command: str = input("Command: ")
     print("\nRunning...\n")
     print_line(venv.execute_venv_command(command))
     pause_and_clear()
-
-
-def print_line(output):
-    for item in output:
-        print(item, "\n")

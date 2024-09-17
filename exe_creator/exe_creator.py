@@ -1,31 +1,35 @@
-# from venv_creator.venv_creator import VenvCreator
+import venv
+from zipapp import create_archive
+
+from click import command
+from exe_create import create_executable
+
+# from menu.menu import create_exe
+from venv_creator.venv_creator import VenvCreator
 
 
-# def create_executable(script_name, venv: VenvCreator):
-#     try:
-#         if not venv.check_library("PyInstaller"):
-#             venv.install_library("PyInstaller")
-#     except e:
-        
+class ExeCreator:
+    def __init__(
+        self, venv: VenvCreator, file_path: str, icon_path: str = None
+    ) -> None:
+        self._venv: VenvCreator = venv
+        self._file_path: str = file_path
+        self._icon_path: str = icon_path
+        self._output = self.create_executable()
 
-#     command = [sys.executable, "-m", "PyInstaller", "--onefile", script_name]
+    def create_executable(self) -> list:
+        output: list[str] = list()
+        try:
+            if not self._venv.check_library("PyInstaller"):
+                self._venv.install_library("PyInstaller")
+            command: str = (
+                f"{self._venv.sys_executable} -m PyInstaller --onefile {self._file_path}"
+            )
 
-#     # Adiciona o ícone se fornecido
-#     if icon_path:
-#         command.extend(["--icon", icon_path])
+            if self._icon_path:
+                command.extend(["--icon", self._icon_path])
+            output: list[str] = self._venv.execute_venv_command(command)
 
-#     # Executa o comando
-#     try:
-#         subprocess.run(command, check=True)
-#         print(f"Executável criado com sucesso! Você pode encontrá-lo na pasta 'dist'.")
-#     except subprocess.CalledProcessError as e:
-#         print(f"Ocorreu um erro ao tentar criar o executável: {e}")
-#     except Exception as e:
-#         print(f"Erro inesperado: {e}")
-
-
-# if __name__ == "__main__":
-#     script = "app.py"  # Nome do script que você deseja transformar em executável
-#     icon = "C:/Users/danil/workspace/PythonProjects/venv-manager/exe.ico"
-
-#     create_executable(script, icon)
+        except Exception as e:
+            output.append(f"Error when searching or installing PyInstaller ': {e}")
+        return output
