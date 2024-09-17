@@ -31,7 +31,7 @@ def show_main_menu(venv: VenvCreator) -> None:
             2: ("Install library", lambda: install_library(venv)),
             3: ("List libraries", lambda: list_library(venv)),
             4: ("Execute command", lambda: execute_command(venv)),
-            5: ("Create executable", lambda: create_exe(venv)),
+            # 5: ("Create executable", lambda: create_exe(venv)),
         }
     )
     main_menu.choice()
