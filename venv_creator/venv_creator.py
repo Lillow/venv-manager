@@ -1,13 +1,18 @@
+from ast import main
 import os
 import platform
 import subprocess
 import sys
+import venv
+
+import venv_creator
 
 
 class VenvCreator:
     def __init__(self, venv_name: str = "venv") -> None:
-        self._venv_name: str = venv_name
-        self.__system: str = platform.system()
+        self._venv_name: str = venv_name.strip().replace(" ", "_")
+        self._platform: str = platform.system()
+        self.sys_executable: str = sys.executable
         self.__venv_path: str = self._get_venv_path(venv_name)
         self.is_created = True
         self.is_created: bool = (
@@ -15,13 +20,13 @@ class VenvCreator:
         )
 
     def _get_venv_path(self, venv_name: str) -> str:
-        if self.__system == "Windows":
+        if self._platform == "Windows":
             return f".\\{venv_name}\\Scripts"
         return f"./{venv_name}/bin/"
 
     def __create_venv(self) -> bool:
         try:
-            complete_command = f"{sys.executable} -m venv {self._venv_name}"
+            complete_command = f"{self.sys_executable} -m venv {self._venv_name}"
 
             print("Creating or finding venv...")
 
@@ -47,14 +52,11 @@ class VenvCreator:
             result = subprocess.run(
                 complete_command, shell=True, capture_output=True, text=True
             )
-            # output.append(f"Outputs:\n{ result.stdout.strip()}")
-            # output.append(f"Errors:\n{result.stderr.strip()})")
             output.append(result.stdout.strip())
             output.append(result.stderr.strip())
 
         except Exception as e:
             output.append(f"\nAn error occurred while executing the command: {e}")
-            # print(f"\nAn error occurred while executing the command: {e}")
         output = output[1:]
         return output
 
@@ -63,7 +65,7 @@ class VenvCreator:
 
     def check_library(self, library_name: str) -> bool:
         output: list[str] = self.execute_venv_command(
-            f"python -m {library_name} --version"
+            f"{self.sys_executable} -m {library_name} --version"
         )
         if output[0] == "":
             return False
