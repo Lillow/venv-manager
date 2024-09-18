@@ -12,7 +12,6 @@ class VenvCreator:
     def __init__(self, venv_name: str = "venv") -> None:
         self._venv_name: str = venv_name.strip().replace(" ", "_")
         self._platform: str = platform.system()
-        self.sys_executable: str = sys.executable
         self.__venv_path: str = self._get_venv_path(venv_name)
         self.is_created = True
         self.is_created: bool = (
@@ -26,7 +25,7 @@ class VenvCreator:
 
     def __create_venv(self) -> bool:
         try:
-            complete_command = f"{self.sys_executable} -m venv {self._venv_name}"
+            complete_command = f"python -m venv {self._venv_name}"
 
             print("Creating or finding venv...")
 
@@ -65,7 +64,7 @@ class VenvCreator:
 
     def check_library(self, library_name: str) -> bool:
         output: list[str] = self.execute_venv_command(
-            f"{self.sys_executable} -m {library_name} --version"
+            f"python -m {library_name} --version"
         )
         if output[0] == "":
             return False
