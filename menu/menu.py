@@ -53,7 +53,6 @@ def create_project_options(venv: VenvCreator) -> None:
 
 def create_venv() -> VenvCreator:
     venv_name: str = input("Virtual environment name (default venv): ")
-    print("Creating or finding venv...\n")
     return VenvCreator(venv_name) if venv_name else VenvCreator()
 
 
