@@ -41,7 +41,7 @@ This module defines the `FlaskManager` class, responsible for creating and manag
 ## 2. How to Use
 
 1. **Download the Executable:**
-    - Download the `app.exe` file.
+    - Download the `venv_manager.exe` file.
 
 2. **Run the File:**
     - Place the file in the directory where you want to create the project and execute it.
