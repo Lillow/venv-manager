@@ -1,4 +1,5 @@
 from typing import Callable
+from utils.terminal_utils import clean_screen
 
 try:
     import msvcrt
@@ -42,6 +43,8 @@ class Options:
                 action()
             elif option == str(self._exit_option):
                 print("Leaving...")
+                clean_screen()
                 break
             else:
-                print("Invalid option. Please try again.")
+                clean_screen()
+                print("Invalid option. Please try again.\n")
