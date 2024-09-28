@@ -9,23 +9,26 @@ from utils.terminal_utils import pause_and_clear, clean_screen, print_line
 
 
 def menu() -> None:
-    print_banner()
-    venv = create_venv()
-    show_main_menu(venv)
-
-
-def print_banner() -> None:
-    print(
+    print_banner(
         """
 ▀█░█▀ █▀▀ █▀▀▄ ▀█░█▀ 　 █▀▄▀█ █▀▀█ █▀▀▄ █▀▀█ █▀▀▀ █▀▀ █▀▀█ 
 ░█▄█░ █▀▀ █░░█ ░█▄█░ 　 █░▀░█ █▄▄█ █░░█ █▄▄█ █░▀█ █▀▀ █▄▄▀ 
 ░░▀░░ ▀▀▀ ▀░░▀ ░░▀░░ 　 ▀░░░▀ ▀░░▀ ▀░░▀ ▀░░▀ ▀▀▀▀ ▀▀▀ ▀░▀▀
         """
     )
+    venv = create_venv()
+    show_main_menu(venv)
+
+
+def print_banner(banner: str) -> None:
+    print(banner)
 
 
 def show_main_menu(venv: VenvCreator) -> None:
     clean_screen()
+    print_banner("""
+█░█ █▀▀ █▄░█ █░█   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
+▀▄▀ ██▄ █░▀█ ▀▄▀   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█\n""")
     main_menu = Options(
         {
             1: ("Create project", lambda: create_project_options(venv)),
@@ -40,6 +43,11 @@ def show_main_menu(venv: VenvCreator) -> None:
 
 def create_project_options(venv: VenvCreator) -> None:
     clean_screen()
+    print_banner(
+        """
+█▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
+█▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█\n"""
+    )
     project_menu = Options(
         {
             1: ("Create Django project", lambda: create_project(venv, "Django")),
