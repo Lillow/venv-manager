@@ -9,6 +9,7 @@ class DjangoCreator(ProjectCreator):
 
             command = f"python -m django startproject {self._project_name}"
             if self._venv.execute_venv_command(command):
+                print(f"Jango project '{self._project_name}' created successfully!")
                 return True
             else:
                 print(f"Failed to create Django project '{self._project_name}'.")
