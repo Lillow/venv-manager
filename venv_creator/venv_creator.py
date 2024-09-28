@@ -60,7 +60,12 @@ class VenvCreator:
         return output
 
     def install_library(self, library_name: str) -> list[str]:
-        return self.execute_venv_command(f"pip install {library_name}")
+        output: list[str] = self.execute_venv_command(f"pip install {library_name}")
+        if output[0] != '':
+            file_path = os.path.join(os.getcwd(), "requirements.txt")
+            with open(file_path, 'a') as f:
+                f.write(f"{library_name}\n")
+        return output
 
     def check_library(self, library_name: str) -> bool:
         output: list[str] = self.execute_venv_command(
