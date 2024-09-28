@@ -43,9 +43,6 @@ if __name__ == '__main__':
 """
             self._create_file("templates/index.html", index_html_content)
 
-            requirements_content = "Flask"
-            self._create_file("requirements.txt", requirements_content)
-
             print(f"Flask project '{self._project_name}' created successfully!")
             return True
         except Exception as e:
