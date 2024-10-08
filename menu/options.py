@@ -1,50 +1,39 @@
 from typing import Callable
 from utils.terminal_utils import clean_screen
 
-try:
-    import msvcrt
-except ImportError:
-    import sys
-    import termios
-    import tty
-
-    try:
-        msvcrt.getch()
-    except ImportError:
-        fd = sys.stdin.fileno()
-        old_settings = termios.tcgetattr(fd)
-        try:
-            tty.setraw(sys.stdin.fileno())
-            sys.stdin.read(1)
-        finally:
-            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-
 
 class Options:
     def __init__(
-        self, options: dict[int, tuple[str, Callable]], exit_option: int = 0
+        self,
+        options: dict[int, tuple[str, Callable]],
+        banner: str = None,
+        exit_option: int = 0,
     ) -> None:
         self._options = options
-        self._exit_option = exit_option
+        self._exit_option: int = exit_option
+        self._banner: str = banner
 
     def show(self) -> None:
-        # wait_for_keypress()
+        if self._banner:
+            print(self._banner,"\n")
         for key, (description, _) in self._options.items():
             print(f"{key} - {description}")
         print(f"{self._exit_option} - Leave")
 
     def choice(self) -> None:
+        """Captura a escolha do usuário e executa a ação correspondente"""
         while True:
             self.show()
             option = input("\nChoose an option: ")
 
-            if option.isdigit() and int(option) in self._options:
-                _, action = self._options[int(option)]
-                action()
-            elif option == str(self._exit_option):
-                print("Leaving...")
-                clean_screen()
-                break
-            else:
-                clean_screen()
-                print("Invalid option. Please try again.\n")
+            match option:
+                case str() if option.isdigit() and int(option) in self._options:
+                    _, action = self._options[int(option)]
+                    action()  # Executa a ação associada à opção
+                case str() if option == str(self._exit_option):
+                    print("Leaving...")
+                    clean_screen()  # Limpa a tela antes de sair
+                    break
+                case _:
+                    clean_screen()
+                    print("Invalid option. Please try again.\n")

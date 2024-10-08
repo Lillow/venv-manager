@@ -9,33 +9,30 @@ from utils.terminal_utils import pause_and_clear, clean_screen, print_line
 
 
 def menu() -> None:
-    print_banner(
+    print(
         """
 ▀█░█▀ █▀▀ █▀▀▄ ▀█░█▀ 　 █▀▄▀█ █▀▀█ █▀▀▄ █▀▀█ █▀▀▀ █▀▀ █▀▀█ 
 ░█▄█░ █▀▀ █░░█ ░█▄█░ 　 █░▀░█ █▄▄█ █░░█ █▄▄█ █░▀█ █▀▀ █▄▄▀ 
 ░░▀░░ ▀▀▀ ▀░░▀ ░░▀░░ 　 ▀░░░▀ ▀░░▀ ▀░░▀ ▀░░▀ ▀▀▀▀ ▀▀▀ ▀░▀▀
-        """
+        \n"""
     )
     venv = create_venv()
     show_main_menu(venv)
 
 
-def print_banner(banner: str) -> None:
-    print(banner)
-
-
 def show_main_menu(venv: VenvCreator) -> None:
     clean_screen()
-    print_banner("""
+    banner = """
 █░█ █▀▀ █▄░█ █░█   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
-▀▄▀ ██▄ █░▀█ ▀▄▀   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█\n""")
+▀▄▀ ██▄ █░▀█ ▀▄▀   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█"""
     main_menu = Options(
         {
             1: ("Create project", lambda: create_project_options(venv)),
             2: ("Install library", lambda: install_library(venv)),
             3: ("List libraries", lambda: list_library(venv)),
             4: ("Execute command", lambda: execute_command(venv)),
-        }
+        },
+        banner,
     )
     main_menu.choice()
     clean_screen()
@@ -43,17 +40,17 @@ def show_main_menu(venv: VenvCreator) -> None:
 
 def create_project_options(venv: VenvCreator) -> None:
     clean_screen()
-    print_banner(
-        """
+    banner = """
 █▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
-█▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█\n"""
-    )
+█▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█"""
+
     project_menu = Options(
         {
             1: ("Create Django project", lambda: create_project(venv, "Django")),
             2: ("Create Flask project", lambda: create_project(venv, "Flask")),
             # 3: ("Create Custom project", lambda: create_project(venv, "Custom")),
-        }
+        },
+        banner,
     )
     project_menu.choice()
     clean_screen()
