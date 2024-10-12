@@ -1,6 +1,7 @@
 from tabnanny import check
 from typing import Any
 from venv_creator.venv_creator import VenvCreator
+from venv_creator.manager_venv import ManagerVenv
 from project_creator.django_creator import DjangoCreator
 from project_creator.flask_creator import FlaskCreator
 from project_creator.project_creator import ProjectCreator
@@ -20,7 +21,7 @@ def menu() -> None:
     show_main_menu(venv)
 
 
-def show_main_menu(venv: VenvCreator) -> None:
+def show_main_menu(venv: ManagerVenv) -> None:
     clean_screen()
     banner = """
 █░█ █▀▀ █▄░█ █░█   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
