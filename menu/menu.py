@@ -1,8 +1,9 @@
 from tabnanny import check
 from typing import Any
 from venv_creator.venv_creator import VenvCreator
-from venv_creator.manager_venv import ManagerVenv
+from manager_venv.manager_venv import ManagerVenv
 from project_creator.django_creator import DjangoCreator
+from manager_project.manager_django import ManagerDjango
 from project_creator.flask_creator import FlaskCreator
 from project_creator.project_creator import ProjectCreator
 from menu.options import Options
@@ -67,7 +68,7 @@ def create_project(venv: VenvCreator, project_type: str) -> ProjectCreator:
     project: ProjectCreator = Any
     print("Creating...\n")
     if project_type == "Django":
-        project = DjangoCreator(venv, project_name)
+        project = ManagerDjango(venv, project_name)
         pause_and_clear()
         return project
     elif project_type == "Flask":
