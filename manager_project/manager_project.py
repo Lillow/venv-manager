@@ -18,7 +18,3 @@ class ManagerProject(Manager, metaclass=ABCMeta):
     @property
     def _venv(self) -> ManagerVenv:
         return self.__venv
-
-    @property
-    def _project_name(self) -> str:
-        return self.__project_name
