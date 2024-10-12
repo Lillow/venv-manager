@@ -1,16 +1,8 @@
 from tabnanny import check
 from typing import Any
-
-# from venv_creator.venv_creator import VenvCreator
 from manager_venv.manager_venv import ManagerVenv
-
-# from project_creator.django_creator import DjangoCreator
 from manager_project.manager_django import ManagerDjango
-
-# from project_creator.flask_creator import FlaskCreator
 from manager_project.manager_flask import ManagerFlask
-
-# from project_creator.project_creator import ProjectCreator
 from menu.options import Options
 from utils.terminal_utils import pause_and_clear, clean_screen, print_line
 
