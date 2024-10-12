@@ -26,15 +26,13 @@ class Manager(metaclass=ABCMeta):
     def _exists_dir(self) -> bool:
         return os.path.exists(self.__str__())
 
+    def _create_directories(self, directories: list[str]) -> None:
+        for directory in directories:
+            dir_path = Path(self._dir_path) / directory
+            dir_path.mkdir(parents=True, exist_ok=True)
+
+    def _create_file(self, file_name: str, file_content: str) -> None:
+        (Path(self._dir_path) / file_name).write_text(file_content)
+
     def __str__(self) -> str:
         return self.__name
-
-    # def _create_directories(self, directories: list[str]) -> None:
-    #     for directory in directories:
-    #         dir_path = self._base_dir / directory
-    #         dir_path.mkdir(parents=True, exist_ok=True)
-
-    # def _create_file(self, dir_name, file_name: str, file_content: str) -> None:
-    #     os.path.join(self._base_dir, file_name)
-    #     with open((self._base_dir, file_name), "a") as f:
-    #         f.write(f"{file_content}\n")
