@@ -1,11 +1,16 @@
 from tabnanny import check
 from typing import Any
-from venv_creator.venv_creator import VenvCreator
+
+# from venv_creator.venv_creator import VenvCreator
 from manager_venv.manager_venv import ManagerVenv
-from project_creator.django_creator import DjangoCreator
+
+# from project_creator.django_creator import DjangoCreator
 from manager_project.manager_django import ManagerDjango
-from project_creator.flask_creator import FlaskCreator
-from project_creator.project_creator import ProjectCreator
+
+# from project_creator.flask_creator import FlaskCreator
+from manager_project.manager_flask import ManagerFlask
+
+# from project_creator.project_creator import ProjectCreator
 from menu.options import Options
 from utils.terminal_utils import pause_and_clear, clean_screen, print_line
 
@@ -40,7 +45,7 @@ def show_main_menu(venv: ManagerVenv) -> None:
     clean_screen()
 
 
-def create_project_options(venv: VenvCreator) -> None:
+def create_project_options(venv: ManagerVenv) -> None:
     clean_screen()
     banner = """
 █▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
@@ -58,28 +63,28 @@ def create_project_options(venv: VenvCreator) -> None:
     clean_screen()
 
 
-def create_venv() -> VenvCreator:
+def create_venv() -> ManagerVenv:
     venv_name: str = input("Virtual environment name (default venv): ")
-    return VenvCreator(venv_name) if venv_name else VenvCreator()
+    return ManagerVenv(venv_name) if venv_name else ManagerVenv()
 
 
-def create_project(venv: VenvCreator, project_type: str) -> ProjectCreator:
+def create_project(venv: ManagerVenv, project_type: str) -> ManagerVenv:
     project_name: str = input("Project name: ")
-    project: ProjectCreator = Any
+    project: ManagerVenv = Any
     print("Creating...\n")
     if project_type == "Django":
         project = ManagerDjango(venv, project_name)
         pause_and_clear()
         return project
     elif project_type == "Flask":
-        project = FlaskCreator(venv, project_name)
+        project = ManagerFlask(venv, project_name)
         pause_and_clear()
         return project
     # elif project_type == "Custom":
     # return None
 
 
-def install_library(venv: VenvCreator) -> None:
+def install_library(venv: ManagerVenv) -> None:
     clean_screen()
     library_name: str = input("Library name: ")
     print("Installing...\n")
@@ -87,14 +92,14 @@ def install_library(venv: VenvCreator) -> None:
     pause_and_clear()
 
 
-def list_library(venv: VenvCreator) -> None:
+def list_library(venv: ManagerVenv) -> None:
     clean_screen()
     print("Finding...\n")
     print_line(venv.list_library())
     pause_and_clear()
 
 
-def execute_command(venv: VenvCreator) -> None:
+def execute_command(venv: ManagerVenv) -> None:
     clean_screen()
     command: str = input("Command: ")
     print("\nRunning...\n")
