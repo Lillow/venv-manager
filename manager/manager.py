@@ -3,6 +3,17 @@ from abc import ABCMeta, abstractmethod
 
 
 class Manager(metaclass=ABCMeta):
+    """Abstract base class for managing directories and files.
+
+    Provides functionality for directory creation, file writing, and
+    checking if a directory exists. Subclasses should implement the `_create` method.
+
+    Attributes:
+        _name (str): Manager name, formatted without spaces.
+        _base_dir (Path): Base working directory.
+        _dir_path (Path): Full path to the managed directory.
+        _is_created (bool): Indicates if the directory was successfully created.
+    """
 
     def __init__(self, name: str) -> None:
         self._name: str = name.strip().replace(" ", "_")
