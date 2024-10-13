@@ -3,10 +3,30 @@ from manager_venv.manager_venv import ManagerVenv
 
 
 class ManagerFlask(ManagerProject):
+    """Manages Flask projects by extending the ManagerProject class.
+
+    This class handles the creation of a Flask project, including the required directories,
+    the app.py file, and a basic index.html template.
+    """
+
     def __init__(self, venv: ManagerVenv, project_name: str) -> None:
+        """Initialize the ManagerFlask with a virtual environment and project name.
+
+        Args:
+            venv (ManagerVenv): The ManagerVenv instance managing the virtual environment.
+            project_name (str): The name of the Flask project.
+        """
         super().__init__(venv, project_name)
 
     def _create_project(self) -> bool:
+        """Create a Flask project within the virtual environment.
+
+        Installs Flask if it is not already installed, creates the necessary project
+        directories, and generates a basic 'app.py' and 'index.html'.
+
+        Returns:
+            bool: True if the Flask project was created successfully, False otherwise.
+        """
         output = True
         try:
             if not self._venv.check_library("flask"):
