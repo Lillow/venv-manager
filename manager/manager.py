@@ -60,7 +60,7 @@ class Manager(metaclass=ABCMeta):
             file_name (str): Name of the file to create.
             file_content (str): Content to write to the file.
         """
-        (self._dir_path / file_name).write_text(file_content)
+        (self._base_dir / file_name).write_text(file_content)
 
     def __str__(self) -> str:
         """Return the name of the managed directory.
