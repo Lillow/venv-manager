@@ -43,16 +43,16 @@ class ManagerFlask(ManagerProject):
 
                 app_py_content = """from flask import Flask, render_template
 
-    app = Flask(__name__)
+app = Flask(__name__)
 
-    @app.route('/')
-    def home():
-        return render_template('index.html')
+@app.route('/')
+def home():
+    return render_template('index.html')
 
-    if __name__ == '__main__':
-        app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
     """
-                self._create_file("app.py", app_py_content)
+                self._create_file(f"{self._name}//app.py", app_py_content)
 
                 index_html_content = """<!DOCTYPE html>
     <html lang="en">
