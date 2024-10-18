@@ -30,7 +30,8 @@ class ManagerFlask(ManagerProject):
         output = True
         try:
             if not self._venv.check_library("flask"):
-                self._venv.install_library("flask")
+                print("Installing the flask...")
+                print(self._venv.install_library("flask")[0][32:43])
             if not self._exists_dir():
                 directories: list[str] = [
                     "templates",
@@ -55,18 +56,20 @@ if __name__ == '__main__':
                 self._create_file(f"{self._name}//app.py", app_py_content)
 
                 index_html_content = """<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home</title>
-    </head>
-    <body>
-        <h1>Welcome to Flask!</h1>
-    </body>
-    </html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to Flask!</h1>
+</body>
+</html>
     """
-                self._create_file("templates/index.html", index_html_content)
+                self._create_file(
+                    f"{self._name}//templates/index.html", index_html_content
+                )
 
                 print(f"Flask project '{self.__str__()}' created successfully!")
                 output = True
