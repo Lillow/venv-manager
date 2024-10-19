@@ -3,6 +3,7 @@ from menu_organized.menu_options import MenuOptions
 from menu_organized.menu_main import MenuMain
 from manager_venv.manager_venv import ManagerVenv
 from utils.terminal_utils import pause_and_clear, clean_screen, print_line
+from menu.menu_venv import options_venv as op
 
 
 def menu_venv():
@@ -26,52 +27,13 @@ def menu_venv():
 █░█ █▀▀ █▄░█ █░█   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
 ▀▄▀ ██▄ █░▀█ ▀▄▀   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█""",
         {
-            1: ("Manage project", lambda: project_manager(manager_venv)),
-            2: ("Install library", lambda: install_library(manager_venv)),
-            3: ("List libraries", lambda: list_library(manager_venv)),
-            4: ("Execute command", lambda: execute_command(manager_venv)),
+            1: ("Manage project", lambda: op.project_manager(manager_venv)),
+            2: ("Install library", lambda: op.install_library(manager_venv)),
+            3: ("List libraries", lambda: op.list_library(manager_venv)),
+            4: ("Execute command", lambda: op.execute_command(manager_venv)),
         },
     )
     menu_options_venv.choice()
     clean_screen()
-
-    def project_manager() -> None:
-        print("Criando ou encontrando projeto")
-        return True
-
-    def install_library(venv: ManagerVenv) -> None:
-        """Prompt the user to install a library in the virtual environment.
-
-        Args:
-            venv (ManagerVenv): Virtual environment manager object.
-        """
-        clean_screen()
-        library_name: str = input("Library name: ")
-        print("Installing...\n")
-        print_line(venv.install_library(library_name))
-        pause_and_clear()
-
-    def list_library(venv: ManagerVenv) -> None:
-        """List all installed libraries in the virtual environment.
-
-        Args:
-            venv (ManagerVenv): Virtual environment manager object.
-        """
-        clean_screen()
-        print("Finding...\n")
-        print_line(venv.list_library())
-        pause_and_clear()
-
-    def execute_command(venv: ManagerVenv) -> None:
-        """Execute a custom command inside the virtual environment.
-
-        Args:
-            venv (ManagerVenv): Virtual environment manager object.
-        """
-        clean_screen()
-        command: str = input("Command: ")
-        print("\nRunning...\n")
-        print_line(venv.execute_venv_command(command))
-        pause_and_clear()
 
     menu_venv = MenuMain(menu_initial_venv, manager_venv, menu_options_venv)
