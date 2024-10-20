@@ -6,8 +6,8 @@ from utils.terminal_utils import pause_and_clear, clean_screen, print_line
 from menu.menu_venv import options_venv as op
 
 
-def menu_venv():
-    menu_initial_venv = menu_venv = MenuInitial(
+def menu_venv() -> None:
+    menu_initial_venv: MenuInitial = MenuInitial(
         """
 ▀█░█▀ █▀▀ █▀▀▄ ▀█░█▀ 　 █▀▄▀█ █▀▀█ █▀▀▄ █▀▀█ █▀▀▀ █▀▀ █▀▀█ 
 ░█▄█░ █▀▀ █░░█ ░█▄█░ 　 █░▀░█ █▄▄█ █░░█ █▄▄█ █░▀█ █▀▀ █▄▄▀ 
@@ -22,7 +22,7 @@ def menu_venv():
     )
     clean_screen()
 
-    menu_options_venv = options_venv = MenuOptions(
+    menu_options_venv: MenuOptions = MenuOptions(
         """
 █░█ █▀▀ █▄░█ █░█   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
 ▀▄▀ ██▄ █░▀█ ▀▄▀   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█""",
