@@ -4,6 +4,7 @@ from menu_organized.menu_options import MenuOptions
 from menu_organized.menu_main import MenuMain
 from utils.terminal_utils import pause_and_clear, clean_screen, print_line
 from menu.menu_project import options_project as op
+from manager_project.manager_project import ManagerProject
 
 
 def menu_project(venv: ManagerVenv):
@@ -16,8 +17,10 @@ def menu_project(venv: ManagerVenv):
         "Python Project name: ",
     )
 
-    # manager_project = ManagerProject(venv, )
-    # menu_initial_project.manager_name
+    clean_screen()
+
+    project_name: str = menu_initial_project.manager_name
+    manager_project: ManagerProject = op.create_project(venv, project_name)
 
     clean_screen()
 
@@ -27,5 +30,6 @@ def menu_project(venv: ManagerVenv):
 █▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█""",
         {},
     )
+    menu_options_project.choice()
 
-    # menu_project = MenuMain(menu_initial_project, manager_project, menu_options_project)
+    menu_project = MenuMain(menu_initial_project, manager_project, menu_options_project)
