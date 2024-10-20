@@ -1,9 +1,10 @@
 from manager_venv.manager_venv import ManagerVenv
 from utils.terminal_utils import pause_and_clear, clean_screen, print_line
+from ..menu_project.menu_project import menu_project
 
 
 def project_manager(venv: ManagerVenv) -> None:
-    print("Criando ou encontrando projeto")
+    menu_project(venv)
 
 
 def install_library(venv: ManagerVenv) -> None:
