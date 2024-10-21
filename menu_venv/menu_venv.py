@@ -3,7 +3,7 @@ from menu_organized.menu_options import MenuOptions
 from menu_organized.menu_main import MenuMain
 from manager_venv.manager_venv import ManagerVenv
 from utils.terminal_utils import pause_and_clear, clean_screen, print_line
-from menu.menu_venv import options_venv as op
+from menu_venv import options_venv as op
 
 
 def menu_venv() -> None:

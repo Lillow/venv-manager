@@ -3,7 +3,7 @@ from menu_organized.menu_initial import MenuInitial
 from menu_organized.menu_options import MenuOptions
 from menu_organized.menu_main import MenuMain
 from utils.terminal_utils import pause_and_clear, clean_screen, print_line
-from menu.menu_project import options_project as op
+from menu_project import options_project as op
 from manager_project.manager_project import ManagerProject
 
 
