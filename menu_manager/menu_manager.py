@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 from typing import Callable
 
 
-class ManagerMenu(metaclass=ABCMeta):
+class MenuManager(metaclass=ABCMeta):
     def __init__(self, banner: str = None) -> None:
         self._banner: str = banner
 

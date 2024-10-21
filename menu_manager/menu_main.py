@@ -1,5 +1,5 @@
-from menu_organized.menu_initial import MenuInitial
-from menu_organized.menu_options import MenuOptions
+from menu_manager.menu_initial import MenuInitial
+from menu_manager.menu_options import MenuOptions
 from utils.terminal_utils import pause_and_clear, clean_screen, print_line
 
 

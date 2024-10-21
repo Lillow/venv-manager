@@ -1,9 +1,9 @@
 from typing import Callable
 from utils.terminal_utils import clean_screen
-from manager_menu.manager_menu import ManagerMenu
+from menu_manager.menu_manager import MenuManager
 
 
-class MenuOptions(ManagerMenu):
+class MenuOptions(MenuManager):
     """A class to display a menu of options, handle user input, and execute the corresponding actions.
 
     Attributes:
