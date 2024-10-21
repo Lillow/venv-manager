@@ -32,6 +32,7 @@ class MenuOptions(ManagerMenu):
 
     def show(self) -> None:
         """Display the banner (if present) and the menu options to the user."""
+        self.print_banner()
         for key, (description, _) in self._options.items():
             print(f"{key} - {description}")
         print(f"{self._exit_option} - Leave")
