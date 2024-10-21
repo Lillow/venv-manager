@@ -15,6 +15,7 @@ def create_project(
 
     1 - Django project
     2 - Flask project
+    3 - Others
     """
         )
         option: str = input("\nChoose an option: ")
@@ -25,6 +26,10 @@ def create_project(
                 break
             case "2":
                 return ManagerFlask(venv, project_name)
+                _create_and_clear()
+                break
+            case "3":
+                return None
                 _create_and_clear()
                 break
 
