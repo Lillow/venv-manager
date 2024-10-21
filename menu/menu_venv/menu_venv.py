@@ -7,6 +7,7 @@ from menu.menu_venv import options_venv as op
 
 
 def menu_venv() -> None:
+    clean_screen()
     menu_initial_venv: MenuInitial = MenuInitial(
         """
 ▀█░█▀ █▀▀ █▀▀▄ ▀█░█▀ 　 █▀▄▀█ █▀▀█ █▀▀▄ █▀▀█ █▀▀▀ █▀▀ █▀▀█ 
