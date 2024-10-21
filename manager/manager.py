@@ -23,7 +23,7 @@ class Manager(metaclass=ABCMeta):
         """
         self._name: str = name.strip().replace(" ", "_")
         self._base_dir: Path = Path.cwd()
-        self._dir_path: Path = self._base_dir / self.__str__()
+        self._dir_path: Path = self._base_dir / self._name
         self._is_created: bool = self._create()
 
     @abstractmethod
