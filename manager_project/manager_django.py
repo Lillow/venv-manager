@@ -1,6 +1,5 @@
 from manager_project.manager_project import ManagerProject
 from manager_venv.manager_venv import ManagerVenv
-from utils.terminal_utils import pause_and_clear
 
 
 class ManagerDjango(ManagerProject):
@@ -60,5 +59,4 @@ class ManagerDjango(ManagerProject):
         output = self._venv.run_venv_command(
             f"python .\\{self._name}\\manage.py runserver {operator} exit"
         )
-        pause_and_clear()
         return output
