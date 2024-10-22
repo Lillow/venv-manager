@@ -21,15 +21,14 @@ def menu_project(venv: ManagerVenv):
 
     project_name: str = menu_initial_project.manager_name
     manager_project: ManagerProject = op.create_project(venv, project_name)
-    manager_project.runserver()
 
-    # clean_screen()
+    clean_screen()
 
     menu_options_project = MenuOptions(
         """
 █▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
 █▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█""",
-        {},
+        {1: ("Run server django", lambda: manager_project.runserver())},
     )
     menu_options_project.choice()
 
