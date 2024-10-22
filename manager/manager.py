@@ -22,7 +22,7 @@ class Manager(metaclass=ABCMeta):
             name (str): The name of the directory, formatted to remove spaces.
         """
         self._name: str = name.strip().replace(" ", "_")
-        self._base_dir: Path = Path.cwd()
+        self._base_dir: Path = Path('.')
         self._dir_path: Path = self._base_dir / self._name
         self._is_created: bool = self._create()
 
