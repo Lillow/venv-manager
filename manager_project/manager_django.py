@@ -52,6 +52,6 @@ class ManagerDjango(ManagerProject):
         if self._venv._platform == "Windows":
             operator = "&&"
         self._venv.run_venv_command(
-            f"python {self._dir_path}\\manage.py runserver {operator} exit"
+            f"python .\\{self._name}\\manage.py runserver {operator} exit"
         )
         pause_and_clear()
