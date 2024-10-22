@@ -21,19 +21,16 @@ def create_project(
         option: str = input("\nChoose an option: ")
         match option:
             case "1":
+                _create_and_clear()
                 return ManagerDjango(venv, project_name)
-                _create_and_clear()
-                break
             case "2":
+                _create_and_clear()
                 return ManagerFlask(venv, project_name)
-                _create_and_clear()
-                break
             case "3":
-                return None
                 _create_and_clear()
-                break
+                return None
 
 
 def _create_and_clear() -> None:
-    pause_and_clear()
+    # pause_and_clear()
     print("Creating or find project...\n")
