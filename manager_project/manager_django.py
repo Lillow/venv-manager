@@ -1,5 +1,6 @@
 from manager_project.manager_project import ManagerProject
 from manager_venv.manager_venv import ManagerVenv
+from utils.terminal_utils import pause_and_clear
 
 
 class ManagerDjango(ManagerProject):
@@ -42,3 +43,15 @@ class ManagerDjango(ManagerProject):
             print(f"Error creating Django project '{self.__str__()}': {e}")
             output = False
         return output
+
+    def execute_django_command(self, command):
+        return 1
+
+    def runserver(self):
+        operator = ";"
+        if self._venv._platform == "Windows":
+            operator = "&&"
+        self._venv.run_venv_command(
+            f"python {self._dir_path}\\manage.py runserver {operator} exit"
+        )
+        pause_and_clear()
