@@ -22,4 +22,4 @@ def pause_and_clear() -> None:
 
 def print_line(str_list: list[str]) -> None:
     for item in str_list:
-        print(item, "\n")
+        print(item)
