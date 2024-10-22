@@ -44,14 +44,21 @@ class ManagerDjango(ManagerProject):
             output = False
         return output
 
-    def execute_django_command(self, command):
-        return 1
-
-    def runserver(self):
+    def execute_project_command(self, command):
         operator = ";"
         if self._venv._platform == "Windows":
             operator = "&&"
-        self._venv.run_venv_command(
+        output = self._venv.execute_venv_command()(
+            f"python .\\{self._name}\\manage.py {command} {operator} exit"
+        )
+        return output
+
+    def runserver(self) -> list[type[str]]:
+        operator = ";"
+        if self._venv._platform == "Windows":
+            operator = "&&"
+        output = self._venv.run_venv_command(
             f"python .\\{self._name}\\manage.py runserver {operator} exit"
         )
         pause_and_clear()
+        return output
