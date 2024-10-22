@@ -28,7 +28,7 @@ def menu_project(venv: ManagerVenv):
         """
 █▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
 █▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█""",
-        {1: ("Run server django", lambda: manager_project.runserver())},
+        {1: ("Run server", lambda: op.runserver(manager_project))},
     )
     menu_options_project.choice()
 
