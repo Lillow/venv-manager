@@ -59,8 +59,8 @@ class ManagerVenv(Manager):
             str: The path to the activation script.
         """
         if self._platform == "Windows":  # Se o caminho não for assim no exe da erro!!!
-            return f".\\{self._name}\\Scripts"
-        return f"./{self._name}/bin/"
+            return f"{self._dir_path}\\Scripts"
+        return f"{self._dir_path}/bin/"
 
     def execute_venv_command(self, command: str) -> list[type[str]]:
         """Execute a command within the activated virtual environment.
