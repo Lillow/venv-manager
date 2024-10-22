@@ -10,7 +10,7 @@ class ManagerVenv(Manager):
     execution of commands within the venv, and checking for installed libraries.
 
     Attributes:
-        __platform (str): The operating system platform (e.g., 'Windows', 'Linux').
+        _platform (str): The operating system platform (e.g., 'Windows', 'Linux').
         __venv_path (str): The path to the venv activation script.
     """
 
@@ -21,7 +21,7 @@ class ManagerVenv(Manager):
             venv_name (str): Name of the virtual environment (default is "venv").
         """
         super().__init__(venv_name)
-        self.__platform: str = platform.system()
+        self._platform: str = platform.system()
         self.__venv_path: str = self.__get_venv_path()
 
     def _create(self) -> bool:
@@ -58,11 +58,11 @@ class ManagerVenv(Manager):
         Returns:
             str: The path to the activation script.
         """
-        if self.__platform == "Windows":
+        if self._platform == "Windows":
             return f"{self._dir_path}\\Scripts"
         return f"{self._dir_path}/bin/"
 
-    def execute_venv_command(self, command: str) -> list[str]:
+    def execute_venv_command(self, command: str) -> list[type[str]]:
         """Execute a command within the activated virtual environment.
 
         Args:
@@ -74,15 +74,42 @@ class ManagerVenv(Manager):
         complete_command: str = f"{self.__venv_path}\\activate && {command}"
         output: list[type[str]] = [str]
         try:
-            result: subprocess.CompletedProcess[str] = subprocess.run(
+            process: subprocess.CompletedProcess[str] = subprocess.run(
                 complete_command, shell=True, capture_output=True, text=True
             )
-            output.append(result.stdout.strip())
-            output.append(result.stderr.strip())
+            output.append(process.stdout.strip())
+            output.append(process.stderr.strip())
 
         except Exception as e:
             output.append(f"\nAn error occurred while executing the command: {e}")
         output = output[1:]
+        return output
+
+    def run_venv_command(self, command: str) -> list[type[str]]:
+        complete_command: str = f"{self.__venv_path}\\activate && {command}"
+        output: list[type[str]] = [str]
+        try:
+            process = None
+
+            match self._platform:
+                case "Windows":
+                    process = subprocess.Popen(
+                        ["start", "cmd", "/k", command],
+                        shell=True,
+                        # f"cmd /c {complete_command}",shell=True,
+                    )
+                case "Linux":
+                    process = subprocess.Popen(
+                        ["gnome-terminal", "--", "bash", "-c", command + "; exec bash"]
+                    )
+                case "Darwin":
+                    process = subprocess.Popen(["open", "-a", "Terminal", command])
+                case _:
+                    output.append("Operating system not supported.")
+            if process:
+                process.wait()
+        except Exception as e:
+            output.append(f"\nAn error occurred while run the command: {e}")
         return output
 
     def install_library(self, library_name: str) -> list[str]:
