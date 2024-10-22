@@ -1,4 +1,5 @@
 from manager_venv.manager_venv import ManagerVenv
+from manager_project.manager_project import ManagerProject
 from manager_project.manager_django import ManagerDjango
 from manager_project.manager_flask import ManagerFlask
 from utils.terminal_utils import pause_and_clear, clean_screen
@@ -34,3 +35,8 @@ def create_project(
 def _create_and_clear() -> None:
     # pause_and_clear()
     print("Creating or find project...\n")
+
+
+def runserver(project: ManagerProject):
+    print(project.runserver())
+    pause_and_clear()
