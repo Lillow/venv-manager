@@ -62,11 +62,6 @@ class ManagerVenv(Manager):
             return f"{self._dir_path}\\Scripts"
         return f"{self._dir_path}/bin/"
 
-        # Does not work in other directories
-        # if self.__platform == "Windows":
-        #     return f".\\{self._dir_path}\\Scripts"
-        # return f"./{self._dir_path}/bin/"
-
     def execute_venv_command(self, command: str) -> list[str]:
         """Execute a command within the activated virtual environment.
 
