@@ -42,3 +42,6 @@ class ManagerProject(Manager, metaclass=ABCMeta):
             bool: True if the project was created successfully, False otherwise.
         """
         pass
+
+    def runserver() -> list[type[str]]:
+        pass
