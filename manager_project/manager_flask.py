@@ -77,3 +77,12 @@ if __name__ == '__main__':
             print(f"Error creating Flask project '{self.__str__()}': {e}")
             output = False
         return output
+
+    def runserver(self):
+        operator = ";"
+        if self._venv._platform == "Windows":
+            operator = "&&"
+        output: list[type[str]] = self._venv.run_venv_command(
+            f"python {self._dir_path}\\app.py {operator} exit"
+        )
+        return output
