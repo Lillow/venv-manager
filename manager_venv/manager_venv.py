@@ -94,20 +94,26 @@ class ManagerVenv(Manager):
             match self._platform:
                 case "Windows":
                     process = subprocess.Popen(
-                        ["start", "cmd", "/k", command],
+                        ["start", "cmd", "/k", complete_command],
                         shell=True,
                         # f"cmd /c {complete_command}",shell=True,
                     )
                 case "Linux":
                     process = subprocess.Popen(
-                        ["gnome-terminal", "--", "bash", "-c", command + "; exec bash"]
+                        [
+                            "gnome-terminal",
+                            "--",
+                            "bash",
+                            "-c",
+                            complete_command + "; exec bash",
+                        ]
                     )
                 case "Darwin":
-                    process = subprocess.Popen(["open", "-a", "Terminal", command])
+                    process = subprocess.Popen(
+                        ["open", "-a", "Terminal", complete_command]
+                    )
                 case _:
                     output.append("Operating system not supported.")
-            if process:
-                process.wait()
         except Exception as e:
             output.append(f"\nAn error occurred while run the command: {e}")
         return output
