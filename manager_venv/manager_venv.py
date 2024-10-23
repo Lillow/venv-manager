@@ -90,32 +90,32 @@ class ManagerVenv(Manager):
         output: list[type[str]] = [str]
         try:
             process = None
+            args = []
+            shell = False
 
             match self._platform:
                 case "Windows":
-                    process = subprocess.Popen(
-                        ["start", "cmd", "/k", complete_command],
-                        shell=True,
-                        # f"cmd /c {complete_command}",shell=True,
-                    )
+                    args = ["start", "cmd", "/k", complete_command]
+                    shell = True
                 case "Linux":
-                    process = subprocess.Popen(
-                        [
-                            "gnome-terminal",
-                            "--",
-                            "bash",
-                            "-c",
-                            complete_command + "; exec bash",
-                        ]
-                    )
+                    args = [
+                        "gnome-terminal",
+                        "--",
+                        "bash",
+                        "-c",
+                        complete_command + "; exec bash",
+                    ]
                 case "Darwin":
-                    process = subprocess.Popen(
-                        ["open", "-a", "Terminal", complete_command]
-                    )
+                    args = ["open", "-a", "Terminal", complete_command]
                 case _:
                     output.append("Operating system not supported.")
+                    return output
+
+            process = subprocess.Popen(args=args, shell=shell)
         except Exception as e:
             output.append(f"\nAn error occurred while run the command: {e}")
+        output.append("Running command...\n")
+        output = output[1:]
         return output
 
     def install_library(self, library_name: str) -> list[str]:
