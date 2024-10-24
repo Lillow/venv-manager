@@ -33,16 +33,21 @@ class ManagerFlask(ManagerProject):
                 print("Installing the flask...")
                 print(self._venv.install_library("flask")[0][32:43])
             if not self._exists_dir():
-                directories: list[str] = [
-                    "templates",
-                    "static",
-                    "static/css",
-                    "static/js",
-                    "static/images",
-                ]
-                self._create_directories(directories)
+                self._create_templates()
+                self._create_app()
+                self._create_index()
+                print(f"Flask project '{self._name}' created successfully!")
+                output = True
+        except Exception as e:
+            print(f"Error creating Flask project '{self._name}': {e}")
+            output = False
+        return output
 
-                app_py_content = """from flask import Flask, render_template
+    def _create_templates(self) -> None:
+        self._create_directory("templates")
+
+    def _create_app(self) -> None:
+        app_py_content = """from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -53,32 +58,24 @@ def home():
 if __name__ == '__main__':
     app.run(debug=True)
     """
-                self._create_file(f"{self._name}//app.py", app_py_content)
+        self._create_file("app.py", app_py_content)
 
-                index_html_content = """<!DOCTYPE html>
+    def _create_index(self):
+        index_html_content = """<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Welcome to Flask!</h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+    </head>
+        <body>
+            <h1>Welcome to Flask!</h1>
+        </body>
 </html>
-    """
-                self._create_file(
-                    f"{self._name}//templates/index.html", index_html_content
-                )
+"""
+        self._create_file("templates\\index.html", index_html_content)
 
-                print(f"Flask project '{self.__str__()}' created successfully!")
-                output = True
-        except Exception as e:
-            print(f"Error creating Flask project '{self.__str__()}': {e}")
-            output = False
-        return output
-
-    def runserver(self):
+    def runserver(self) -> list[type[str]]:
         operator = ";"
         if self._venv._platform == "Windows":
             operator = "&&"
