@@ -20,7 +20,6 @@ def menu_project(venv: ManagerVenv):
     clean_screen()
 
     project_name: str = menu_initial_project.manager_name
-    manager_project: ManagerProject = op.create_project(venv, project_name)
 
     clean_screen()
 
@@ -28,8 +27,13 @@ def menu_project(venv: ManagerVenv):
         """
 █▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
 █▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█""",
-        {1: ("Run server", lambda: op.runserver(manager_project))},
+        {
+            1: ("Django", lambda: op.create_project(venv, project_name, "django")),
+            2: ("Flask", lambda: op.create_project(venv, project_name, "flask")),
+            # 3: ("Others", lambda: op.create_project(project_name)),
+        },
     )
     menu_options_project.choice()
 
-    menu_project = MenuMain(menu_initial_project, manager_project, menu_options_project)
+    # return menu_project = MenuMain(menu_initial_project, manager_project, menu_options_project)
+    # return menu_project
