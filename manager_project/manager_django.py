@@ -29,6 +29,7 @@ class ManagerDjango(ManagerProject):
         output = True
         try:
             if not self._venv.check_library("django"):
+                print("Installing Django...\n")
                 self._venv.install_library("django")
             if not self._exists_dir():
                 command: str = f"python -m django startproject {self.__str__()}"
