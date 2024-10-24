@@ -1,7 +1,7 @@
 from manager_venv.manager_venv import ManagerVenv
 from manager_project.manager_project import ManagerProject
-from manager_project.manager_django import ManagerDjango
-from manager_project.manager_flask import ManagerFlask
+from manager_django.manager_django import ManagerDjango
+from manager_flask.manager_flask import ManagerFlask
 from utils.terminal_utils import pause_and_clear, print_line
 
 
