@@ -1,6 +1,5 @@
 from menu_manager.menu_initial import MenuInitial
 from menu_manager.menu_options import MenuOptions
-from menu_manager.menu_main import MenuMain
 from manager_venv.manager_venv import ManagerVenv
 from utils.terminal_utils import pause_and_clear, clean_screen, print_line
 from menu_venv import options_venv as op
@@ -37,4 +36,3 @@ def menu_venv() -> None:
     menu_options_venv.choice()
     clean_screen()
 
-    menu_venv = MenuMain(menu_initial_venv, manager_venv, menu_options_venv)

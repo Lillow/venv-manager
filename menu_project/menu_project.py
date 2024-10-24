@@ -1,7 +1,6 @@
 from manager_venv.manager_venv import ManagerVenv
 from menu_manager.menu_initial import MenuInitial
 from menu_manager.menu_options import MenuOptions
-from menu_manager.menu_main import MenuMain
 from utils.terminal_utils import pause_and_clear, clean_screen, print_line
 from menu_project import options_project as op
 from manager_project.manager_project import ManagerProject
@@ -35,5 +34,3 @@ def menu_project(venv: ManagerVenv):
     )
     menu_options_project.choice()
 
-    # return menu_project = MenuMain(menu_initial_project, manager_project, menu_options_project)
-    # return menu_project
