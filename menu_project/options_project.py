@@ -2,7 +2,9 @@ from manager_venv.manager_venv import ManagerVenv
 from manager_project.manager_project import ManagerProject
 from manager_django.manager_django import ManagerDjango
 from manager_flask.manager_flask import ManagerFlask
-from utils.terminal_utils import pause_and_clear, print_line
+from menu_django.menu_django import menu_django
+from menu_flask.menu_flask import menu_flask
+from utils.terminal_utils import pause_and_clear
 
 
 def create_project(
@@ -13,15 +15,10 @@ def create_project(
         case "django":
             manager_project = ManagerDjango(venv, project_name)
             pause_and_clear()
-            # menu_jango(manager_project)
+            menu_django(venv, manager_project)
         case "flask":
             manager_project = ManagerFlask(venv, project_name)
             pause_and_clear()
-            # menu_flask(manager_project)
+            menu_flask(venv, manager_project)
         case _:
             manager_project = None
-
-
-def runserver(project: ManagerProject) -> None:
-    print_line(project.runserver())
-    pause_and_clear()
