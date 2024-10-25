@@ -71,13 +71,16 @@ Contém o módulo `manager_flask.py` com a classe `ManagerFlask`, responsável p
    ![image](https://github.com/user-attachments/assets/30a744be-fbd8-44ea-95d4-5adcbaff5fd8)
 
 
-8. **Menu de Gerenciamento de Projeto:**
+7. **Menu de Gerenciamento de Projeto:**
    - Selecione a opção "1 - Manage project" para criar ou gerenciar um projeto. Após inserir o nome do projeto, o seguinte menu será exibido:
      - **1 - Django:** Configura o projeto como um projeto Django.
      - **2 - Flask:** Configura o projeto como um projeto Flask.
-     - **0 - Leave:** Retorna ao menu anterior. 
+     - **0 - Leave:** Retorna ao menu anterior.
+    
+       ![image](https://github.com/user-attachments/assets/db5c3287-fc18-4683-bb0d-332cc7d11a91)
 
-7. **Menu de Opções do Projeto (Django ou Flask):**
+
+8. **Menu de Opções do Projeto (Django ou Flask):**
    - Dependendo do tipo de projeto escolhido, as opções específicas aparecerão:
      - **1 - Run server:** Inicia o servidor do projeto.
      - **0 - Leave:** Retorna ao menu anterior.
