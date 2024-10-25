@@ -103,9 +103,7 @@ Contém o módulo `manager_flask.py` com a classe `ManagerFlask`, responsável p
 
 - **Python:** Versão 3.12 ou superior.
 
-##
-
- 5. Contribuição
+## 5. Contribuição
 
 Contribuições são bem-vindas! Siga estas etapas para contribuir:
 
