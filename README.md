@@ -39,15 +39,21 @@ Contains `manager_flask.py` with the `ManagerFlask` class, responsible for creat
 1. **Download the Executable or Run the Script:**
    - Download the `venv_manager.exe` file or run the Python script directly.
 
-2. **Execute the File:**
+   ![image](https://github.com/user-attachments/assets/9efeb5b2-e2d2-48ca-bd72-c51e01b3dfc0)
+
+   ![Screenshot 2024-10-25 at 10-18-59 venv-manager_venv_manager exe at main · Lillow_venv-manager](https://github.com/user-attachments/assets/f2bbb4aa-81f9-4738-b071-82fb48942ff8)
+
+
+
+3. **Execute the File:**
    - Place the executable (or script) in the directory where you want to create the project and execute it.
 
-3. **Create or Select a Virtual Environment:**
+4. **Create or Select a Virtual Environment:**
    - Enter the name of the virtual environment to create or locate it. If no name is provided, the default name is "venv".
 
-![image](https://github.com/user-attachments/assets/d4e8a5b0-2d23-4fe5-b27d-53c20e3c2ca9)
+   ![image](https://github.com/user-attachments/assets/d4e8a5b0-2d23-4fe5-b27d-53c20e3c2ca9)
 
-4. **Virtual Environment Options Menu:**
+5. **Virtual Environment Options Menu:**
    - Once in the environment, you’ll see the following menu options:
      - **1 - Manage project:** Enter the project management menu.
      - **2 - Install library:** Install libraries in the environment.
@@ -55,13 +61,13 @@ Contains `manager_flask.py` with the `ManagerFlask` class, responsible for creat
      - **4 - Execute command:** Execute custom commands within the environment.
      - **0 - Leave:** Exit the tool.
 
-5. **Project Management Menu:**
+6. **Project Management Menu:**
    - Selecting "1 - Manage project" will prompt for the project name. If the project doesn’t exist, it will be created. You’ll then see:
      - **1 - Django:** Sets up a Django project.
      - **2 - Flask:** Sets up a Flask project.
      - **0 - Leave:** Return to the previous menu.
 
-6. **Project Options Menu (Django or Flask):**
+7. **Project Options Menu (Django or Flask):**
    - If a Django or Flask project is selected, the respective menu will appear with options:
      - **1 - Run server:** Starts the project’s development server.
      - **0 - Leave:** Return to the previous menu.
