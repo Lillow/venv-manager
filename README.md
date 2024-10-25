@@ -74,11 +74,14 @@ Contains `manager_flask.py` with the `ManagerFlask` class, responsible for creat
    ![image](https://github.com/user-attachments/assets/b474c26f-9278-40ea-a528-b329d901448a)
 
 
-6. **Project Management Menu:**
+7. **Project Management Menu:**
    - Selecting "1 - Manage project" will prompt for the project name. If the project doesn’t exist, it will be created. You’ll then see:
      - **1 - Django:** Sets up a Django project.
      - **2 - Flask:** Sets up a Flask project.
      - **0 - Leave:** Return to the previous menu.
+
+     ![image](https://github.com/user-attachments/assets/7ad2a8fa-931f-44d1-aafa-5835e2698084)
+
 
 7. **Project Options Menu (Django or Flask):**
    - If a Django or Flask project is selected, the respective menu will appear with options:
