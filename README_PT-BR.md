@@ -10,7 +10,7 @@ O diretório `manager_venv` contém funcionalidades para criação e gerenciamen
 
 #### 1.1.1 Módulo `manager_venv.py`
 
-O módulo `manager_venv.py` define a classe `VenvManager`, responsável por criar e gerenciar o ambiente virtual Python. Suas principais funcionalidades incluem:
+O módulo `manager_venv.py` define a classe `ManagerVenv`, responsável por criar e gerenciar o ambiente virtual Python. Suas principais funcionalidades incluem:
 
 - **Criação de Ambiente Virtual:** Cria um ambiente virtual com pip habilitado.
 - **Execução de Comandos:** Permite executar comandos dentro do ambiente virtual.
@@ -20,14 +20,14 @@ O módulo `manager_venv.py` define a classe `VenvManager`, responsável por cria
 
 ### 1.2 Diretório `manager_django/`
 
-Contém o módulo `manager_django.py` com a classe `DjangoManager`, responsável por criar e gerenciar projetos Django. As principais funcionalidades incluem:
+Contém o módulo `manager_django.py` com a classe `ManagerDjango`, responsável por criar e gerenciar projetos Django. As principais funcionalidades incluem:
 
 - **Verificação e Instalação do Django:** Verifica se o Django está instalado no ambiente virtual e realiza a instalação, se necessário.
 - **Criação de Projeto Django:** Cria um novo projeto Django com o nome especificado.
 
 ### 1.3 Diretório `manager_flask/`
 
-Contém o módulo `manager_flask.py` com a classe `FlaskManager`, responsável por criar e gerenciar projetos Flask. As principais funcionalidades incluem:
+Contém o módulo `manager_flask.py` com a classe `ManagerFlask`, responsável por criar e gerenciar projetos Flask. As principais funcionalidades incluem:
 
 - **Verificação e Instalação do Flask:** Verifica se o Flask está instalado no ambiente virtual e realiza a instalação, se necessário.
 - **Criação de Projeto Flask:** Cria um novo projeto Flask com o nome especificado.

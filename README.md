@@ -12,7 +12,7 @@ The `manager_venv` directory contains functionalities for creating and managing 
 
 #### 1.1.1 manager_venv.py
 
-This module defines the `VenvManager` class, responsible for creating and managing Python virtual environments. Key functionalities include:
+This module defines the `ManagerVenv` class, responsible for creating and managing Python virtual environments. Key functionalities include:
 
 - **Virtual Environment Creation:** Creates a virtual environment with pip enabled.
 - **Command Execution in Virtual Environment:** Allows commands to be executed within the virtual environment.
@@ -22,14 +22,14 @@ This module defines the `VenvManager` class, responsible for creating and managi
 
 ### 1.2 manager_django/
 
-Contains `manager_django.py` with the `DjangoManager` class, responsible for creating and managing Django projects. Key functionalities include:
+Contains `manager_django.py` with the `ManagerDjango` class, responsible for creating and managing Django projects. Key functionalities include:
 
 - **Django Verification and Installation:** Checks if Django is installed in the virtual environment and installs it if necessary.
 - **Django Project Creation:** Creates a new Django project with the specified name.
 
 ### 1.3 manager_flask/
 
-Contains `manager_flask.py` with the `FlaskManager` class, responsible for creating and managing Flask projects. Key functionalities include:
+Contains `manager_flask.py` with the `ManagerFlask` class, responsible for creating and managing Flask projects. Key functionalities include:
 
 - **Flask Verification and Installation:** Checks if Flask is installed in the virtual environment and installs it if necessary.
 - **Flask Project Creation:** Creates a new Flask project with the specified name.
