@@ -37,16 +37,21 @@ Contém o módulo `manager_flask.py` com a classe `ManagerFlask`, responsável p
 1. **Baixe o Executável ou Rode o Script:**
    - Baixe o arquivo `venv_manager.exe` ou execute o script diretamente.
 
-2. **Executar o Arquivo:**
+   ![image](https://github.com/user-attachments/assets/33031f06-ac2b-4b1b-879e-ae87a7f39b25)
+
+   ![Screenshot 2024-10-25 at 10-18-59 venv-manager_venv_manager exe at main · Lillow_venv-manager](https://github.com/user-attachments/assets/8841c9e9-8aab-4bdd-bbda-82bf83140426)
+
+
+3. **Executar o Arquivo:**
    - Coloque o executável (ou script) no diretório onde deseja criar o projeto e execute-o.
 
-3. **Criar ou Selecionar um Ambiente Virtual:**
+4. **Criar ou Selecionar um Ambiente Virtual:**
    - Insira o nome do ambiente virtual para criá-lo ou encontrá-lo. Se nada for especificado, o nome padrão será "venv".
 
-![image](https://github.com/user-attachments/assets/901ff244-bece-468a-a968-5b4f931f8f08)
+   ![image](https://github.com/user-attachments/assets/901ff244-bece-468a-a968-5b4f931f8f08)
 
 
-4. **Menu de Opções do Ambiente Virtual:**
+5. **Menu de Opções do Ambiente Virtual:**
    - Escolha uma das opções para gerenciar seu ambiente virtual:
      - **1 - Manage project:** Gerenciar ou criar um projeto.
      - **2 - Install library:** Instalar bibliotecas Python.
@@ -54,13 +59,13 @@ Contém o módulo `manager_flask.py` com a classe `ManagerFlask`, responsável p
      - **4 - Execute command:** Executar comandos personalizados dentro do ambiente virtual.
      - **0 - Leave:** Sair da ferramenta.
 
-5. **Menu de Gerenciamento de Projeto:**
+6. **Menu de Gerenciamento de Projeto:**
    - Selecione a opção "1 - Manage project" para criar ou gerenciar um projeto. Após inserir o nome do projeto, o seguinte menu será exibido:
      - **1 - Django:** Configura o projeto como um projeto Django.
      - **2 - Flask:** Configura o projeto como um projeto Flask.
      - **0 - Leave:** Retorna ao menu anterior.
 
-6. **Menu de Opções do Projeto (Django ou Flask):**
+7. **Menu de Opções do Projeto (Django ou Flask):**
    - Dependendo do tipo de projeto escolhido, as opções específicas aparecerão:
      - **1 - Run server:** Inicia o servidor do projeto.
      - **0 - Leave:** Retorna ao menu anterior.
