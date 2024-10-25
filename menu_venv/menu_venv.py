@@ -9,9 +9,9 @@ def menu_venv() -> None:
     clean_screen()
     menu_initial_venv: MenuInitial = MenuInitial(
         """
-▀█░█▀ █▀▀ █▀▀▄ ▀█░█▀ 　 █▀▄▀█ █▀▀█ █▀▀▄ █▀▀█ █▀▀▀ █▀▀ █▀▀█ 
-░█▄█░ █▀▀ █░░█ ░█▄█░ 　 █░▀░█ █▄▄█ █░░█ █▄▄█ █░▀█ █▀▀ █▄▄▀ 
-░░▀░░ ▀▀▀ ▀░░▀ ░░▀░░ 　 ▀░░░▀ ▀░░▀ ▀░░▀ ▀░░▀ ▀▀▀▀ ▀▀▀ ▀░▀▀
+▒█░░▒█ ▒█▀▀▀ ▒█▄░▒█ ▒█░░▒█   ▒█▀▄▀█ ░█▀▀█ ▒█▄░▒█ ░█▀▀█ ▒█▀▀█ ▒█▀▀▀ ▒█▀▀█ 
+░▒█▒█░ ▒█▀▀▀ ▒█▒█▒█ ░▒█▒█░   ▒█▒█▒█ ▒█▄▄█ ▒█▒█▒█ ▒█▄▄█ ▒█░▄▄ ▒█▀▀▀ ▒█▄▄▀ 
+░░▀▄▀░ ▒█▄▄▄ ▒█░░▀█ ░░▀▄▀░   ▒█░░▒█ ▒█░▒█ ▒█░░▀█ ▒█░▒█ ▒█▄▄█ ▒█▄▄▄ ▒█░▒█
             """,
         "Virtual environment name (default venv): ",
     )
@@ -24,8 +24,9 @@ def menu_venv() -> None:
 
     menu_options_venv: MenuOptions = MenuOptions(
         """
-█░█ █▀▀ █▄░█ █░█   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
-▀▄▀ ██▄ █░▀█ ▀▄▀   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█""",
+█░█ █▀▀ █▄░█ █░█   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
+▀▄▀ ██▄ █░▀█ ▀▄▀   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█
+        """,
         {
             1: ("Manage project", lambda: op.project_manager(manager_venv)),
             2: ("Install library", lambda: op.install_library(manager_venv)),
@@ -35,4 +36,3 @@ def menu_venv() -> None:
     )
     menu_options_venv.choice()
     clean_screen()
-

@@ -9,9 +9,11 @@ def menu_project(venv: ManagerVenv):
     clean_screen()
     menu_initial_project: MenuInitial = MenuInitial(
         """
-▒█▀▀█ █▀▀█ █▀▀█ ░░▀ █▀▀ █▀▀ ▀▀█▀▀ 　 ▒█▀▄▀█ █▀▀█ █▀▀▄ █▀▀█ █▀▀▀ █▀▀ █▀▀█ 
-▒█▄▄█ █▄▄▀ █░░█ ░░█ █▀▀ █░░ ░░█░░ 　 ▒█▒█▒█ █▄▄█ █░░█ █▄▄█ █░▀█ █▀▀ █▄▄▀ 
-▒█░░░ ▀░▀▀ ▀▀▀▀ █▄█ ▀▀▀ ▀▀▀ ░░▀░░ 　 ▒█░░▒█ ▀░░▀ ▀░░▀ ▀░░▀ ▀▀▀▀ ▀▀▀ ▀░▀▀""",
+
+▒█▀▀█ ▒█▀▀█ ▒█▀▀▀█ ░░░▒█ ▒█▀▀▀ ▒█▀▀█ ▀▀█▀▀   ▒█▀▄▀█ ░█▀▀█ ▒█▄░▒█ ░█▀▀█ ▒█▀▀█ ▒█▀▀▀ ▒█▀▀█ 
+▒█▄▄█ ▒█▄▄▀ ▒█░░▒█ ░▄░▒█ ▒█▀▀▀ ▒█░░░ ░▒█░░   ▒█▒█▒█ ▒█▄▄█ ▒█▒█▒█ ▒█▄▄█ ▒█░▄▄ ▒█▀▀▀ ▒█▄▄▀ 
+▒█░░░ ▒█░▒█ ▒█▄▄▄█ ▒█▄▄█ ▒█▄▄▄ ▒█▄▄█ ░▒█░░   ▒█░░▒█ ▒█░▒█ ▒█░░▀█ ▒█░▒█ ▒█▄▄█ ▒█▄▄▄ ▒█░▒█
+        """,
         "Python Project name: ",
     )
 
@@ -23,8 +25,9 @@ def menu_project(venv: ManagerVenv):
 
     menu_options_project = MenuOptions(
         """
-█▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
-█▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█""",
+█▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
+█▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█
+        """,
         {
             1: ("Django", lambda: op.create_project(venv, project_name, "django")),
             2: ("Flask", lambda: op.create_project(venv, project_name, "flask")),
@@ -32,4 +35,3 @@ def menu_project(venv: ManagerVenv):
         },
     )
     menu_options_project.choice()
-

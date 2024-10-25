@@ -10,10 +10,9 @@ def menu_flask(venv: ManagerVenv, manage_flask: ManagerDjango):
 
     menu_options_flask = MenuOptions(
         """
-█▀▀ █░░ ▄▀█ █▀ █▄▀   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
-█▀░ █▄▄ █▀█ ▄█ █░█   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█""",
-        {
-            1: ("Run server", lambda: op.runserver(manage_flask))
-        },
+█▀▀ █░░ ▄▀█ █▀ █▄▀   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
+█▀░ █▄▄ █▀█ ▄█ █░█   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█
+        """,
+        {1: ("Run server", lambda: op.runserver(manage_flask))},
     )
     menu_options_flask.choice()

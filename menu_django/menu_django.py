@@ -10,10 +10,9 @@ def menu_django(venv: ManagerVenv, manage_django: ManagerDjango):
 
     menu_options_django = MenuOptions(
         """
-█▀▄ ░░█ ▄▀█ █▄░█ █▀▀ █▀█   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
-█▄▀ █▄█ █▀█ █░▀█ █▄█ █▄█   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█""",
-        {
-            1: ("Run server", lambda: op.runserver(manage_django))
-        },
+█▀▄ ░░█ ▄▀█ █▄░█ █▀▀ █▀█   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
+█▄▀ █▄█ █▀█ █░▀█ █▄█ █▄█   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█
+        """,
+        {1: ("Run server", lambda: op.runserver(manage_django))},
     )
     menu_options_django.choice()
