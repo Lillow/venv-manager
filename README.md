@@ -45,19 +45,19 @@ Contains `manager_flask.py` with the `ManagerFlask` class, responsible for creat
 
 
 
-3. **Execute the File:**
+2. **Execute the File:**
    - Place the executable (or script) in the directory where you want to create the project and execute it.
   
      ![image](https://github.com/user-attachments/assets/e5c3656c-802a-44b8-87fa-35d23bdb0722)
 
 
-4. **Create or Select a Virtual Environment:**
+3. **Create or Select a Virtual Environment:**
    - Enter the name of the virtual environment to create or locate it. If no name is provided, the default name is "venv".
 
    ![image](https://github.com/user-attachments/assets/20689a39-fe9b-49dc-ae24-8ee5a864c405)
 
 
-5. **Virtual Environment Options Menu:**
+4. **Virtual Environment Options Menu:**
    - Once in the environment, you’ll see the following menu options:
      - **1 - Manage project:** Enter the project management menu.
      - **2 - Install library:** Install libraries in the environment.
@@ -68,13 +68,13 @@ Contains `manager_flask.py` with the `ManagerFlask` class, responsible for creat
        ![image](https://github.com/user-attachments/assets/be7a45a5-8932-4ad3-805a-b99adc70685c)
 
 
-6. **Create or select a project:**
+5. **Create or select a project:**
    - Enter the name of the project environment to create or locate it.
 
    ![image](https://github.com/user-attachments/assets/b474c26f-9278-40ea-a528-b329d901448a)
 
 
-7. **Project Management Menu:**
+6. **Project Management Menu:**
    - Selecting "1 - Manage project" will prompt for the project name. If the project doesn’t exist, it will be created. You’ll then see:
      - **1 - Django:** Sets up a Django project.
      - **2 - Flask:** Sets up a Flask project.
