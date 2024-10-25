@@ -1,5 +1,7 @@
 # venv-manager (Português)
 
+[Read in English](./README.md)
+
 **venv-manager** é uma ferramenta de linha de comando que simplifica o gerenciamento de ambientes virtuais Python, permitindo a criação de ambientes, a instalação de bibliotecas e a configuração de projetos Django e Flask. Ela automatiza grande parte da configuração inicial para novos projetos Python.
 
 ## 1. Estrutura do Projeto
