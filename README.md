@@ -47,11 +47,15 @@ Contains `manager_flask.py` with the `ManagerFlask` class, responsible for creat
 
 3. **Execute the File:**
    - Place the executable (or script) in the directory where you want to create the project and execute it.
+  
+     ![image](https://github.com/user-attachments/assets/e5c3656c-802a-44b8-87fa-35d23bdb0722)
+
 
 4. **Create or Select a Virtual Environment:**
    - Enter the name of the virtual environment to create or locate it. If no name is provided, the default name is "venv".
 
-   ![image](https://github.com/user-attachments/assets/d4e8a5b0-2d23-4fe5-b27d-53c20e3c2ca9)
+   ![image](https://github.com/user-attachments/assets/20689a39-fe9b-49dc-ae24-8ee5a864c405)
+
 
 5. **Virtual Environment Options Menu:**
    - Once in the environment, you’ll see the following menu options:
@@ -60,6 +64,15 @@ Contains `manager_flask.py` with the `ManagerFlask` class, responsible for creat
      - **3 - List libraries:** List installed libraries.
      - **4 - Execute command:** Execute custom commands within the environment.
      - **0 - Leave:** Exit the tool.
+    
+       ![image](https://github.com/user-attachments/assets/be7a45a5-8932-4ad3-805a-b99adc70685c)
+
+
+6. **Create or select a project:**
+   - Enter the name of the project environment to create or locate it.
+
+   ![image](https://github.com/user-attachments/assets/b474c26f-9278-40ea-a528-b329d901448a)
+
 
 6. **Project Management Menu:**
    - Selecting "1 - Manage project" will prompt for the project name. If the project doesn’t exist, it will be created. You’ll then see:
