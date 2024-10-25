@@ -44,6 +44,7 @@ Contains `manager_flask.py` with the `ManagerFlask` class, responsible for creat
 
 3. **Create or Select a Virtual Environment:**
    - Enter the name of the virtual environment to create or locate it. If no name is provided, the default name is "venv".
+![image](https://github.com/user-attachments/assets/d4e8a5b0-2d23-4fe5-b27d-53c20e3c2ca9)
 
 4. **Virtual Environment Options Menu:**
    - Once in the environment, you’ll see the following menu options:

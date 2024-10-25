@@ -43,6 +43,9 @@ Contém o módulo `manager_flask.py` com a classe `ManagerFlask`, responsável p
 3. **Criar ou Selecionar um Ambiente Virtual:**
    - Insira o nome do ambiente virtual para criá-lo ou encontrá-lo. Se nada for especificado, o nome padrão será "venv".
 
+![image](https://github.com/user-attachments/assets/901ff244-bece-468a-a968-5b4f931f8f08)
+
+
 4. **Menu de Opções do Ambiente Virtual:**
    - Escolha uma das opções para gerenciar seu ambiente virtual:
      - **1 - Manage project:** Gerenciar ou criar um projeto.
