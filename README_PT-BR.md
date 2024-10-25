@@ -45,10 +45,13 @@ Contém o módulo `manager_flask.py` com a classe `ManagerFlask`, responsável p
 3. **Executar o Arquivo:**
    - Coloque o executável (ou script) no diretório onde deseja criar o projeto e execute-o.
 
+   ![image](https://github.com/user-attachments/assets/e4e19fde-1fdd-44cc-b8c9-27767107e23f)
+
+
 4. **Criar ou Selecionar um Ambiente Virtual:**
    - Insira o nome do ambiente virtual para criá-lo ou encontrá-lo. Se nada for especificado, o nome padrão será "venv".
 
-   ![image](https://github.com/user-attachments/assets/901ff244-bece-468a-a968-5b4f931f8f08)
+   ![image](https://github.com/user-attachments/assets/3b596f01-ef71-48b4-81b9-20b06f68b043)
 
 
 5. **Menu de Opções do Ambiente Virtual:**
@@ -58,12 +61,21 @@ Contém o módulo `manager_flask.py` com a classe `ManagerFlask`, responsável p
      - **3 - List libraries:** Listar todas as bibliotecas instaladas.
      - **4 - Execute command:** Executar comandos personalizados dentro do ambiente virtual.
      - **0 - Leave:** Sair da ferramenta.
+    
+       ![image](https://github.com/user-attachments/assets/09fbfabb-2279-4495-b89f-a5ae5182c683)
 
-6. **Menu de Gerenciamento de Projeto:**
+
+6. **Criar ou Selecionar um Projeto:**
+   - Insira o nome do projeto para criá-lo ou encontrá-lo.
+
+   ![image](https://github.com/user-attachments/assets/30a744be-fbd8-44ea-95d4-5adcbaff5fd8)
+
+
+8. **Menu de Gerenciamento de Projeto:**
    - Selecione a opção "1 - Manage project" para criar ou gerenciar um projeto. Após inserir o nome do projeto, o seguinte menu será exibido:
      - **1 - Django:** Configura o projeto como um projeto Django.
      - **2 - Flask:** Configura o projeto como um projeto Flask.
-     - **0 - Leave:** Retorna ao menu anterior.
+     - **0 - Leave:** Retorna ao menu anterior. 
 
 7. **Menu de Opções do Projeto (Django ou Flask):**
    - Dependendo do tipo de projeto escolhido, as opções específicas aparecerão:
