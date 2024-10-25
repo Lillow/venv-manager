@@ -1,9 +1,8 @@
 from manager_venv.manager_venv import ManagerVenv
 from menu_manager.menu_initial import MenuInitial
 from menu_manager.menu_options import MenuOptions
-from utils.terminal_utils import pause_and_clear, clean_screen, print_line
+from utils.terminal_utils import clean_screen
 from menu_project import options_project as op
-from manager_project.manager_project import ManagerProject
 
 
 def menu_project(venv: ManagerVenv):
