@@ -9,9 +9,11 @@ def menu_flask(venv: ManagerVenv, manage_flask: ManagerDjango):
     clean_screen()
 
     menu_options_flask = MenuOptions(
-        """
+        f"""
 █▀▀ █░░ ▄▀█ █▀ █▄▀   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
 █▀░ █▄▄ █▀█ ▄█ █░█   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█
+
+Project: {manage_flask._name}
         """,
         {1: ("Run server", lambda: op.runserver(manage_flask))},
     )

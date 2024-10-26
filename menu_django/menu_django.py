@@ -9,9 +9,11 @@ def menu_django(venv: ManagerVenv, manage_django: ManagerDjango):
     clean_screen()
 
     menu_options_django = MenuOptions(
-        """
+        f"""
 █▀▄ ░░█ ▄▀█ █▄░█ █▀▀ █▀█   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
 █▄▀ █▄█ █▀█ █░▀█ █▄█ █▄█   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█
+
+Project: {manage_django._name}
         """,
         {1: ("Run server", lambda: op.runserver(manage_django))},
     )
