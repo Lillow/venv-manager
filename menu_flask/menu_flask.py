@@ -13,7 +13,7 @@ def menu_flask(venv: ManagerVenv, manage_flask: ManagerDjango):
 █▀▀ █░░ ▄▀█ █▀ █▄▀   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
 █▀░ █▄▄ █▀█ ▄█ █░█   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█
 
-Project: {manage_flask._name}
+\033[1m{manage_flask._name}\033[0m
         """,
         {1: ("Run server", lambda: op.runserver(manage_flask))},
     )

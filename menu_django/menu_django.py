@@ -13,7 +13,7 @@ def menu_django(venv: ManagerVenv, manage_django: ManagerDjango):
 █▀▄ ░░█ ▄▀█ █▄░█ █▀▀ █▀█   █▀█ █▀█ ▀█▀ █ █▀█ █▄░█ █▀
 █▄▀ █▄█ █▀█ █░▀█ █▄█ █▄█   █▄█ █▀▀ ░█░ █ █▄█ █░▀█ ▄█
 
-Project: {manage_django._name}
+\033[1m{manage_django._name}\033[0m
         """,
         {1: ("Run server", lambda: op.runserver(manage_django))},
     )
