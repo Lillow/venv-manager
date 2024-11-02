@@ -15,6 +15,9 @@ def menu_django(venv: ManagerVenv, manage_django: ManagerDjango):
 
 \033[1m{manage_django._name}\033[0m
         """,
-        {1: ("Run server", lambda: op.runserver(manage_django))},
+        {
+            1: ("Run Server", lambda: op.runserver(manage_django)),
+            2: ("Start App", lambda: op.start_app(manage_django)),
+        },
     )
     menu_options_django.choice()

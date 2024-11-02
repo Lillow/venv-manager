@@ -46,19 +46,22 @@ class ManagerDjango(ManagerProject):
         return output
 
     def execute_project_command(self, command):
-        operator = ";"
+        AND = ";"
         if self._venv._platform == "Windows":
-            operator = "&&"
-        output = self._venv.execute_venv_command()(
-            f"python .\\{self._name}\\manage.py {command} {operator} exit"
+            AND = "&&"
+        output = self._venv.execute_venv_command(
+            f"cd .\\{self._name} {AND} python manage.py {command} {AND} cd .. exit"
         )
         return output
 
     def runserver(self) -> list[type[str]]:
-        operator = ";"
+        AND = ";"
         if self._venv._platform == "Windows":
-            operator = "&&"
+            AND = "&&"
         output = self._venv.run_venv_command(
-            f"python .\\{self._name}\\manage.py runserver {operator} exit"
+            f"python .\\{self._name}\\manage.py runserver {AND} exit"
         )
         return output
+
+    def start_app(self, app_name) -> list[type[str]]:
+        self.execute_project_command(f"startapp {app_name}")
