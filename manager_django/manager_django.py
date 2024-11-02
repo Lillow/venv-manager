@@ -50,7 +50,7 @@ class ManagerDjango(ManagerProject):
         if self._venv._platform == "Windows":
             AND = "&&"
         output = self._venv.execute_venv_command(
-            f"cd .\\{self._name} {AND} python manage.py {command} {AND} cd .. exit"
+            f"cd {self._dir_path} {AND} python manage.py {command} {AND} cd .. {AND} exit"
         )
         return output
 
@@ -59,9 +59,47 @@ class ManagerDjango(ManagerProject):
         if self._venv._platform == "Windows":
             AND = "&&"
         output = self._venv.run_venv_command(
-            f"python .\\{self._name}\\manage.py runserver {AND} exit"
+            f"python {self._dir_path}\\manage.py runserver {AND} exit"
         )
         return output
 
     def start_app(self, app_name) -> list[type[str]]:
-        self.execute_project_command(f"startapp {app_name}")
+        if not self._exists_dir(app_name):
+            self.execute_project_command(f"startapp {app_name}")
+        settings = f"{self._name}\\settings.py"
+        if self._exists_file(settings):
+            self._add_app(file_path=settings, new_app=app_name)
+
+    def _add_app(self, file_path: str, new_app: str) -> None:
+        # Obter o caminho completo do arquivo
+        file_path = self._dir_path / file_path
+
+        # Ler o conteúdo do arquivo
+        content = file_path.read_text()
+
+        # Verificar se o app já está em INSTALLED_APPS
+        if new_app in content:
+            print(f"O app '{new_app}' já está em INSTALLED_APPS.")
+            return
+
+        # Procurar o índice do fechamento da lista INSTALLED_APPS
+        apps_start = content.find("INSTALLED_APPS = [")
+        if apps_start == -1:
+            print("A lista INSTALLED_APPS não foi encontrada.")
+            return
+
+        # Encontrar a posição de fechamento da lista
+        closing_bracket_index = content.find("]", apps_start)
+
+        # Inserir o novo app antes do colchete de fechamento
+        updated_content = (
+            content[:closing_bracket_index]
+            + f"    '{new_app}',\n"
+            + content[closing_bracket_index:]
+        )
+
+        # Escrever o conteúdo atualizado de volta no arquivo
+        file_path.write_text(updated_content)
+        print(
+            f"O app '{new_app}' foi adicionado ao final de INSTALLED_APPS com sucesso."
+        )
