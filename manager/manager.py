@@ -44,6 +44,10 @@ class Manager(metaclass=ABCMeta):
         dir_path = self._dir_path / dir_path
         return dir_path.exists()
 
+    def _exists_file(self, file_path: str = "") -> bool:
+        file_path = self._dir_path / file_path
+        return file_path.exists() and file_path.is_file()
+
     def _create_directory(self, dir_path: str = "") -> None:
         """Create a list of directories inside the managed directory.
 
