@@ -83,12 +83,20 @@ Contains `manager_flask.py` with the `ManagerFlask` class, responsible for creat
      ![image](https://github.com/user-attachments/assets/7ad2a8fa-931f-44d1-aafa-5835e2698084)
 
 
-7. **Project Options Menu (Django or Flask):**
-   - If a Django or Flask project is selected, the respective menu will appear with options:
+7. **Project Options Menu (Django):**
+   - Django options menu:
+     - **1 - Run server:** Starts the project’s development server.
+     - **2 - Start app** Create a django app.
+     - **0 - Leave:** Return to the previous menu.
+    
+     ![Imagem do WhatsApp de 2024-11-02 à(s) 20 29 38_8aa8dc49](https://github.com/user-attachments/assets/c6f1a1bf-acd5-4e0a-a38a-bfe1ed3eb63f)
+     
+
+8. **Project Options Menu (Flask):**
+   - Flask options menu:
      - **1 - Run server:** Starts the project’s development server.
      - **0 - Leave:** Return to the previous menu.
     
-     ![image](https://github.com/user-attachments/assets/04e9e629-000f-4004-99be-b9b1d19c6404)
      ![image](https://github.com/user-attachments/assets/0d16edd2-fbf5-4757-b130-6114ba7c5e46)
 
 
