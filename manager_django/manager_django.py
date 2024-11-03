@@ -78,7 +78,7 @@ class ManagerDjango(ManagerProject):
         content = file_path.read_text()
 
         # Verificar se o app já está em INSTALLED_APPS
-        if new_app in content:
+        if f"'{new_app}'" in content or f'"{new_app}"' in content:
             print(f"O app '{new_app}' já está em INSTALLED_APPS.")
             return
 
