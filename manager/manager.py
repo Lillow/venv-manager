@@ -1,5 +1,6 @@
 from pathlib import Path
 from abc import ABCMeta, abstractmethod
+from unittest.mock import patch
 
 
 class Manager(metaclass=ABCMeta):
@@ -47,6 +48,33 @@ class Manager(metaclass=ABCMeta):
     def _exists_file(self, file_path: str = "") -> bool:
         file_path = self._dir_path / file_path
         return file_path.exists() and file_path.is_file()
+
+    def _exists_content(self, entire_content: str, content: str) -> bool:
+        if content in entire_content:
+            return True
+        return False
+
+    def _get_content(self, file_path: Path) -> str:
+        file_path = self._dir_path / file_path
+        return file_path.read_text()
+
+    def _change_content(
+        self, entire_content: str, new_content: str, init_content: str, end_content: str
+    ) -> str:
+        i_init: int = entire_content.find(init_content)
+        if i_init == -1:
+            print("Initial content not found.")
+            return ""
+        i_end: int = entire_content.find(end_content, i_init)
+
+        new_content: str = (
+            entire_content[:i_end] + f"    '{new_content}',\n" + entire_content[i_end:]
+        )
+        return new_content
+
+    def _update_content(self, file_path: str, new_content: str) -> None:
+        file_path = self._dir_path / file_path
+        file_path.write_text(new_content)
 
     def _create_directory(self, dir_path: str = "") -> None:
         """Create a list of directories inside the managed directory.
