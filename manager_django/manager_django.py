@@ -36,7 +36,7 @@ class ManagerDjango(ManagerProject):
             if not self._exists_dir():
                 command: str = f"python -m django startproject {self.__str__()}"
                 if self._venv.execute_venv_command(command):
-                    print(f"Jango project '{self.__str__()}' created successfully!")
+                    print(f"Django project '{self.__str__()}' created successfully!")
                     output = True
                 else:
                     print(f"Failed to create Django project '{self.__str__()}'.")
