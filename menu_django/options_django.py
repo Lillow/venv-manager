@@ -11,4 +11,5 @@ def start_app(project: ManagerDjango) -> None:
     app_name = input("\nApp name: ")
     print("\nCreating or finding app...\n")
     project.start_app(app_name)
+    print("App created successfully.\n")
     pause_and_clear()
