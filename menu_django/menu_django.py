@@ -18,6 +18,7 @@ def menu_django(venv: ManagerVenv, manage_django: ManagerDjango):
         {
             1: ("Run Server", lambda: op.runserver(manage_django)),
             2: ("Start App", lambda: op.start_app(manage_django)),
+            3: ("Run project command", lambda: op.run_project_command(manage_django)),
         },
     )
     menu_options_django.choice()

@@ -55,12 +55,12 @@ class ManagerDjango(ManagerProject):
         )
         return output
 
-    def runserver(self) -> list[type[str]]:
+    def run_project_command(self, command) -> list[type[str]]:
         AND = ";"
         if self._venv._platform == "Windows":
             AND = "&&"
         output: list[type[str]] = self._venv.run_venv_command(
-            f"python {self._dir_path}\\manage.py runserver {AND} exit"
+            f"python {self._dir_path}\\manage.py {command} {AND} exit"
         )
         return output
 
