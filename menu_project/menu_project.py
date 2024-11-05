@@ -14,7 +14,7 @@ def menu_project(venv: ManagerVenv):
 ▒█▄▄█ ▒█▄▄▀ ▒█░░▒█ ░▄░▒█ ▒█▀▀▀ ▒█░░░ ░▒█░░   ▒█▒█▒█ ▒█▄▄█ ▒█▒█▒█ ▒█▄▄█ ▒█░▄▄ ▒█▀▀▀ ▒█▄▄▀ 
 ▒█░░░ ▒█░▒█ ▒█▄▄▄█ ▒█▄▄█ ▒█▄▄▄ ▒█▄▄█ ░▒█░░   ▒█░░▒█ ▒█░▒█ ▒█░░▀█ ▒█░▒█ ▒█▄▄█ ▒█▄▄▄ ▒█░▒█
         """,
-        "Python Project name: ",
+        "Python Project name (default project): ",
     )
 
     clean_screen()

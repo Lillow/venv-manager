@@ -9,7 +9,7 @@ class ManagerFlask(ManagerProject):
     the app.py file, and a basic index.html template.
     """
 
-    def __init__(self, venv: ManagerVenv, project_name: str) -> None:
+    def __init__(self, venv: ManagerVenv, project_name: str = "project_flask") -> None:
         """Initialize the ManagerFlask with a virtual environment and project name.
 
         Args:

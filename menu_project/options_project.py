@@ -13,11 +13,17 @@ def create_project(
     print("\nCreating or finding project...\n")
     match type_project:
         case "django":
-            manager_project = ManagerDjango(venv, project_name)
+            manager_project = (
+                ManagerDjango(venv, project_name)
+                if project_name
+                else ManagerDjango(venv)
+            )
             pause_and_clear()
             menu_django(venv, manager_project)
         case "flask":
-            manager_project = ManagerFlask(venv, project_name)
+            manager_project = (
+                ManagerFlask(venv, project_name) if project_name else ManagerFlask(venv)
+            )
             pause_and_clear()
             menu_flask(venv, manager_project)
         case _:

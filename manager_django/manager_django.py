@@ -9,7 +9,7 @@ class ManagerDjango(ManagerProject):
     Handles the creation of Django projects within a specified virtual environment.
     """
 
-    def __init__(self, venv: ManagerVenv, project_name: str) -> None:
+    def __init__(self, venv: ManagerVenv, project_name: str = "project_django") -> None:
         """Initialize the ManagerDjango with a virtual environment and project name.
 
         Args:
