@@ -1,4 +1,5 @@
 import subprocess
+import platform
 from pathlib import Path
 from abc import ABCMeta, abstractmethod
 from unittest.mock import patch
@@ -26,6 +27,7 @@ class Manager(metaclass=ABCMeta):
         self._name: str = name.strip().replace(" ", "_")
         self._base_dir: Path = Path(".")
         self._dir_path: Path = self._base_dir / self._name
+        self._platform: str = platform.system()
         self._is_created: bool = self._create()
 
     @abstractmethod
@@ -59,7 +61,7 @@ class Manager(metaclass=ABCMeta):
             args = []
             shell = False
 
-            match self._platform:
+            match platform.system():
                 case "Windows":
                     args = ["start", "cmd", "/k", command]
                     shell = True
@@ -78,7 +80,7 @@ class Manager(metaclass=ABCMeta):
                     return output
             process = subprocess.Popen(args=args, shell=shell)
         except Exception as e:
-            output.append(f"\nAn error occurred while run the command: {e}")
+            print(f"\nAn error occurred while run the command: {e}")
         output.append("Running command...\n")
         output = output[1:]
         return output

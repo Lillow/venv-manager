@@ -1,4 +1,3 @@
-import platform
 import subprocess
 from manager.manager import Manager
 
@@ -21,7 +20,6 @@ class ManagerVenv(Manager):
             venv_name (str): Name of the virtual environment (default is "venv").
         """
         super().__init__(venv_name)
-        self._platform: str = platform.system()
         self.__venv_path: str = self.__get_venv_path()
 
     def _create(self) -> bool:
