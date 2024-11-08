@@ -72,18 +72,7 @@ class ManagerVenv(Manager):
             list[str]: The standard output and error of the command.
         """
         complete_command: str = f"{self.__venv_path}\\activate && {command}"
-        output: list[type[str]] = [str]
-        try:
-            process: subprocess.CompletedProcess[str] = subprocess.run(
-                complete_command, shell=True, capture_output=True, text=True
-            )
-            output.append(process.stdout.strip())
-            output.append(process.stderr.strip())
-
-        except Exception as e:
-            output.append(f"\nAn error occurred while executing the command: {e}")
-        output = output[1:]
-        return output
+        return self._execute_command(complete_command)
 
     def run_venv_command(self, command: str) -> list[type[str]]:
         complete_command: str = f"{self.__venv_path}\\activate && {command}"

@@ -1,3 +1,4 @@
+import subprocess
 from pathlib import Path
 from abc import ABCMeta, abstractmethod
 from unittest.mock import patch
@@ -35,6 +36,20 @@ class Manager(metaclass=ABCMeta):
             bool: True if creation was successful, False otherwise.
         """
         pass
+
+    def _execute_command(self, command) -> list[type[str]]:
+        output: list[type[str]] = [str]
+        try:
+            process: subprocess.CompletedProcess[str] = subprocess.run(
+                command, shell=True, capture_output=True, text=True
+            )
+            output.append(process.stdout.strip())
+            output.append(process.stderr.strip())
+
+        except Exception as e:
+            output.append(f"\nAn error occurred while executing the command: {e}")
+        output = output[1:]
+        return output
 
     def _exists_dir(self, dir_path: str = "") -> bool:
         """Check if the managed directory exists.
