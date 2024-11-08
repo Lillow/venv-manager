@@ -23,7 +23,7 @@ class MenuInitial(MenuManager):
             forbidden_names: set[str] = {"django", "flask", "admin", "config", "test"}
             if (
                 len(name) < 4
-                or not re.match(r"^[a-zA-Z0-9_]+$", name)
+                or not re.match(r"^[a-zA-Z0-9_-]+$", name)
                 or name[0].isdigit()
                 or name in forbidden_names
             ):
