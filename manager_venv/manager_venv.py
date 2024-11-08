@@ -76,36 +76,7 @@ class ManagerVenv(Manager):
 
     def run_venv_command(self, command: str) -> list[type[str]]:
         complete_command: str = f"{self.__venv_path}\\activate && {command}"
-        output: list[type[str]] = [str]
-        try:
-            process = None
-            args = []
-            shell = False
-
-            match self._platform:
-                case "Windows":
-                    args = ["start", "cmd", "/k", complete_command]
-                    shell = True
-                case "Linux":
-                    args = [
-                        "gnome-terminal",
-                        "--",
-                        "bash",
-                        "-c",
-                        complete_command + "; exec bash",
-                    ]
-                case "Darwin":
-                    args = ["open", "-a", "Terminal", complete_command]
-                case _:
-                    output.append("Operating system not supported.")
-                    return output
-
-            process = subprocess.Popen(args=args, shell=shell)
-        except Exception as e:
-            output.append(f"\nAn error occurred while run the command: {e}")
-        output.append("Running command...\n")
-        output = output[1:]
-        return output
+        return self._run_command(complete_command)
 
     def install_library(self, library_name: str) -> list[str]:
         """Install a library using pip in the virtual environment.

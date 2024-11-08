@@ -51,6 +51,37 @@ class Manager(metaclass=ABCMeta):
         output = output[1:]
         return output
 
+    def _run_command(self, command: str) -> list[type[str]]:
+        output: list[type[str]] = [str]
+        try:
+            process = None
+            args = []
+            shell = False
+
+            match self._platform:
+                case "Windows":
+                    args = ["start", "cmd", "/k", command]
+                    shell = True
+                case "Linux":
+                    args = [
+                        "gnome-terminal",
+                        "--",
+                        "bash",
+                        "-c",
+                        command + "; exec bash",
+                    ]
+                case "Darwin":
+                    args = ["open", "-a", "Terminal", command]
+                case _:
+                    output.append("Operating system not supported.")
+                    return output
+            process = subprocess.Popen(args=args, shell=shell)
+        except Exception as e:
+            output.append(f"\nAn error occurred while run the command: {e}")
+        output.append("Running command...\n")
+        output = output[1:]
+        return output
+
     def _exists_dir(self, dir_path: str = "") -> bool:
         """Check if the managed directory exists.
 
