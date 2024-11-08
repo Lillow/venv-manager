@@ -30,27 +30,23 @@ class ManagerVenv(Manager):
         Returns:
             bool: True if the venv was created successfully, False otherwise.
         """
-        output = True
         if not self._exists_dir():
             try:
                 complete_command: str = f"python -m venv {self._name}"
 
                 print("Creating or finding venv...")
 
-                result: subprocess.CompletedProcess[str] = subprocess.run(
-                    complete_command, shell=True, capture_output=True, text=True
-                )
+                result: list[type[str]] = self._execute_command(complete_command)
 
-                if result.returncode == 0:
+                if result[2] == 0:
                     print(f"Virtual environment '{self._name}' created successfully.")
-                    output = True
+                    return True
                 else:
-                    print(f"Error creating virtual environment: {result.stderr}")
-                    output = False
+                    print(f"Error creating virtual environment: {result[1]}")
+                    return False
             except Exception as e:
                 print(f"Error: {e}")
-                output = False
-        return output
+                return False
 
     def __get_venv_path(self) -> str:
         """Get the path to the venv activation script based on the OS.

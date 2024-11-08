@@ -45,6 +45,7 @@ class Manager(metaclass=ABCMeta):
             )
             output.append(process.stdout.strip())
             output.append(process.stderr.strip())
+            output.append(process.returncode)
 
         except Exception as e:
             output.append(f"\nAn error occurred while executing the command: {e}")
