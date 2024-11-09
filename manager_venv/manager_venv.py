@@ -22,7 +22,7 @@ class ManagerVenv(Manager):
         super().__init__(venv_name)
         self.__venv_path: str = self.__get_venv_path()
 
-    def _create(self) -> bool:
+    def _create(self) -> None:
         """Create a virtual environment if it doesn't exist.
 
         Returns:
@@ -38,13 +38,15 @@ class ManagerVenv(Manager):
 
                 if result[2] == 0:
                     print(f"Virtual environment '{self._name}' created successfully.")
-                    return True
+                    self._is_created = True
+                    return
                 else:
                     print(f"Error creating virtual environment: {result[1]}")
-                    return False
+                    self._is_created = False
+                    return
             except Exception as e:
                 print(f"Error: {e}")
-                return False
+                self._is_created = False
 
     def __get_venv_path(self) -> str:
         """Get the path to the venv activation script based on the OS.
@@ -86,7 +88,7 @@ class ManagerVenv(Manager):
             self._create_file("request.txt", library_name)
         return output
 
-    def check_library(self, library_name: str) -> bool:
+    def is_library_installed(self, library_name: str) -> bool:
         """Check if a library is installed in the virtual environment.
 
         Args:

@@ -28,7 +28,7 @@ class Manager(metaclass=ABCMeta):
         self._base_dir: Path = Path(".")
         self._dir_path: Path = self._base_dir / self._name
         self._platform: str = platform.system()
-        self._is_created: bool = self._create()
+        self._is_created: bool = False
 
     @abstractmethod
     def _create(self) -> bool:

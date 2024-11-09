@@ -18,7 +18,7 @@ class ManagerDjango(ManagerProject):
         """
         super().__init__(venv, project_name)
 
-    def _create_project(self) -> bool:
+    def _create_project(self) -> None:
         """Create a Django project within the virtual environment.
 
         Checks if Django is installed, installs it if necessary, and creates a new
@@ -27,9 +27,8 @@ class ManagerDjango(ManagerProject):
         Returns:
             bool: True if the Django project was created successfully, False otherwise.
         """
-        output = True
         try:
-            if not self._venv.check_library("django"):
+            if not self._venv.is_library_installed("django"):
                 print("Installing Django...")
                 print(self._venv.install_library("django")[0][32:43])
                 self._venv.install_library("django")
@@ -37,14 +36,15 @@ class ManagerDjango(ManagerProject):
                 command: str = f"python -m django startproject {self.__str__()}"
                 if self._venv.execute_venv_command(command):
                     print(f"Django project '{self.__str__()}' created successfully!")
-                    output = True
+                    self._is_created = True
+                    return
                 else:
                     print(f"Failed to create Django project '{self.__str__()}'.")
-                    output = False
+                    self._is_created = False
+                    return
         except Exception as e:
             print(f"Error creating Django project '{self.__str__()}': {e}")
-            output = False
-        return output
+            self._is_created = False
 
     def execute_project_command(self, command) -> list[type[str]]:
         AND = ";"

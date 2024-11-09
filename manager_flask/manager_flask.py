@@ -18,7 +18,7 @@ class ManagerFlask(ManagerProject):
         """
         super().__init__(venv, project_name)
 
-    def _create_project(self) -> bool:
+    def _create_project(self) -> None:
         """Create a Flask project within the virtual environment.
 
         Installs Flask if it is not already installed, creates the necessary project
@@ -27,9 +27,8 @@ class ManagerFlask(ManagerProject):
         Returns:
             bool: True if the Flask project was created successfully, False otherwise.
         """
-        output = True
         try:
-            if not self._venv.check_library("flask"):
+            if not self._venv.is_library_installed("flask"):
                 print("Installing the flask...")
                 print(self._venv.install_library("flask")[0][32:43])
             if not self._exists_dir():
@@ -37,11 +36,11 @@ class ManagerFlask(ManagerProject):
                 self._create_app()
                 self._create_index()
                 print(f"Flask project '{self._name}' created successfully!")
-                output = True
+                self._is_created = True
+                return
         except Exception as e:
             print(f"Error creating Flask project '{self._name}': {e}")
-            output = False
-        return output
+            self._is_created = False
 
     def _create_templates(self) -> None:
         self._create_directory("templates")

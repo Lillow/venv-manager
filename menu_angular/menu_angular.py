@@ -1,6 +1,6 @@
 from menu_manager.menu_initial import MenuInitial
 from menu_manager.menu_options import MenuOptions
-from utils.terminal_utils import clean_screen
+from utils.terminal_utils import clean_screen, pause_and_clear
 from manager_angular.manager_angular import ManagerAngular
 
 
@@ -18,7 +18,8 @@ def menu_angular() -> None:
         if menu_initial_angular.manager_name
         else ManagerAngular()
     )
-    clean_screen()
+    manager_angular._create_project()
+    pause_and_clear()
 
     menu_options_angular: MenuOptions = MenuOptions(
         f"""

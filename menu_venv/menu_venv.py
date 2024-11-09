@@ -20,6 +20,7 @@ def menu_venv() -> None:
         if menu_initial_venv.manager_name
         else ManagerVenv()
     )
+    manager_venv._create()
     clean_screen()
 
     menu_options_venv: MenuOptions = MenuOptions(

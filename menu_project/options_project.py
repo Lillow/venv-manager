@@ -1,3 +1,4 @@
+from typing import Self
 from manager_venv.manager_venv import ManagerVenv
 from manager_project.manager_project import ManagerProject
 from manager_django.manager_django import ManagerDjango
@@ -18,12 +19,14 @@ def create_project(
                 if project_name
                 else ManagerDjango(venv)
             )
+            manager_project._create()
             pause_and_clear()
             menu_django(venv, manager_project)
         case "flask":
             manager_project = (
                 ManagerFlask(venv, project_name) if project_name else ManagerFlask(venv)
             )
+            manager_project._create()
             pause_and_clear()
             menu_flask(venv, manager_project)
         case _:
