@@ -2,6 +2,7 @@ from menu_manager.menu_initial import MenuInitial
 from menu_manager.menu_options import MenuOptions
 from utils.terminal_utils import clean_screen, pause_and_clear
 from manager_angular.manager_angular import ManagerAngular
+from menu_angular import options_angular as op
 
 
 def menu_angular() -> None:
@@ -29,7 +30,7 @@ def menu_angular() -> None:
 \033[1m{manager_angular._name}\033[0m
             """,
         {
-            # 1: ("Manage project", lambda: op.project_manager(manager_angular)),
+            1: ("Run Server", lambda: op.runserver(manager_angular)),
             # 2: ("Install library", lambda: op.install_library(manager_angular)),
             # 3: ("List libraries", lambda: op.list_library(manager_angular)),
             # 4: ("Execute command", lambda: op.execute_command(manager_angular)),

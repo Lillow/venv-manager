@@ -13,12 +13,20 @@ class ManagerAngular(ManagerProject):
                 print("\nInstalling angular cli...\n")
                 self._install_angular()
                 print(self._angular_version())
-            print("\nCreating angular project...\n")
+            print("\nCreating or find angular project...\n")
         if not self._exists_dir():
             AND = ";"
             if self._platform == "Windows":
                 AND = "&&"
             self._run_command(f"ng new {self._name} {AND} exit")
+
+    def runserver(self) -> None:
+        AND = ";"
+        if self._platform == "Windows":
+            AND = "&&"
+        self._run_command(
+            f"cd {self._dir_path} {AND} ng serve {AND} cd {self._base_dir} {AND} exit"
+        )
 
     def _is_node_installed(self) -> bool:
         return True if self._execute_command("node --version")[0][0] == "v" else False
