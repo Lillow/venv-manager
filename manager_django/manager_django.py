@@ -46,27 +46,12 @@ class ManagerDjango(ManagerProject):
             print(f"Error creating Django project '{self.__str__()}': {e}")
             self._is_created = False
 
-    def execute_project_command(self, command) -> list[type[str]]:
-        AND = ";"
-        if self._venv._platform == "Windows":
-            AND = "&&"
-        output: list[type[str]] = self._venv.execute_venv_command(
-            f"cd {self._dir_path} {AND} python manage.py {command} {AND} cd .. {AND} exit"
-        )
-        return output
-
-    def run_project_command(self, command) -> list[type[str]]:
-        AND = ";"
-        if self._venv._platform == "Windows":
-            AND = "&&"
-        output: list[type[str]] = self._venv.run_venv_command(
-            f"python {self._dir_path}\\manage.py {command} {AND} exit"
-        )
-        return output
+    def venv_runserver(self) -> list[type[str]]:
+        return self.run_venv_django_command("runserver")
 
     def start_app(self, app_name: str) -> None:
         if not self._exists_dir(app_name):
-            self.execute_project_command(f"startapp {app_name}")
+            self.execute_venv_django_command(f"startapp {app_name}")
         settings: str = f"{self._name}\\settings.py"
         if self._exists_file(settings):
             self._add_app(file_path=settings, new_app=app_name)
@@ -85,3 +70,11 @@ class ManagerDjango(ManagerProject):
         )
 
         self._update_content(file_path, new_content)
+
+    def execute_venv_django_command(self, command) -> list[type[str]]:
+        complete_command: str = f"python manage.py {command}"
+        return self._execute_venv_project_command(complete_command)
+
+    def run_venv_django_command(self, command) -> list[type[str]]:
+        complete_command: str = f"python manage.py {command}"
+        return self._run_venv_project_command(complete_command)
