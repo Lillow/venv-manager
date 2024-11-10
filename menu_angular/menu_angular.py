@@ -20,7 +20,7 @@ def menu_angular() -> None:
         else ManagerAngular()
     )
     manager_angular._create_project()
-    pause_and_clear()
+    clean_screen()
 
     menu_options_angular: MenuOptions = MenuOptions(
         f"""
@@ -33,7 +33,7 @@ def menu_angular() -> None:
             1: ("Run Server", lambda: op.runserver(manager_angular)),
             # 2: ("Install library", lambda: op.install_library(manager_angular)),
             # 3: ("List libraries", lambda: op.list_library(manager_angular)),
-            # 4: ("Execute command", lambda: op.execute_command(manager_angular)),
+            2: ("Run command", lambda: op.run_command(manager_angular)),
         },
     )
     menu_options_angular.choice()

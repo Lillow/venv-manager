@@ -20,13 +20,8 @@ class ManagerAngular(ManagerProject):
                 AND = "&&"
             self._run_command(f"ng new {self._name} {AND} exit")
 
-    def runserver(self) -> None:
-        AND = ";"
-        if self._platform == "Windows":
-            AND = "&&"
-        self._run_command(
-            f"cd {self._dir_path} {AND} ng serve {AND} cd {self._base_dir} {AND} exit"
-        )
+    def runserver(self) -> list[type[str]]:
+        return self.run_angular_command(f"serve")
 
     def _is_node_installed(self) -> bool:
         return True if self._execute_command("node --version")[0][0] == "v" else False
@@ -44,3 +39,6 @@ class ManagerAngular(ManagerProject):
 
     def _install_angular(self) -> list[type[str]]:
         return self._execute_command("npm install -g @angular/cli")
+
+    def run_angular_command(self, command: str) -> list[type[str]]:
+        return self._run_project_command(f"ng {command}")
