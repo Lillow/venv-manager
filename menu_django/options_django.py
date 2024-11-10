@@ -3,7 +3,7 @@ from utils.terminal_utils import print_line, pause_and_clear, clean_screen
 
 
 def runserver(project: ManagerDjango) -> None:
-    print_line(project.run_project_command("runserver"))
+    print_line(project.venv_runserver())
     pause_and_clear()
 
 
@@ -15,9 +15,9 @@ def start_app(project: ManagerDjango) -> None:
     pause_and_clear()
 
 
-def run_project_command(project: ManagerDjango) -> None:
+def run_django_project_command(project: ManagerDjango) -> None:
     clean_screen()
     command: str = input("Command: ")
     print("\nRunning...\n")
-    project.run_project_command(command)
+    project.run_django_project_command(command)
     pause_and_clear()
