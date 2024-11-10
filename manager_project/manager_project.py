@@ -23,14 +23,6 @@ class ManagerProject(Manager, metaclass=ABCMeta):
         self._venv: ManagerVenv = venv
         super().__init__(project_name)
 
-    def _create(self) -> bool:
-        """Create the project by calling the _create_project method.
-
-        Returns:
-            bool: True if the project was created successfully, False otherwise.
-        """
-        return self._create_project()
-
     @abstractmethod
     def _create_project(self) -> bool:
         """Abstract method to handle project creation.
@@ -43,5 +35,49 @@ class ManagerProject(Manager, metaclass=ABCMeta):
         """
         pass
 
-    def runserver() -> list[type[str]]:
+    def _create(self) -> bool:
+        """Create the project by calling the _create_project method.
+
+        Returns:
+            bool: True if the project was created successfully, False otherwise.
+        """
+        return self._create_project()
+
+    def venv_runserver() -> list[type[str]]:
         pass
+
+    def _execute_project_command(self, command) -> list[type[str]]:
+        AND = ";"
+        if self._venv._platform == "Windows":
+            AND = "&&"
+        output: list[type[str]] = self._venv.execute_command(
+            f"cd {self._dir_path} {AND} {command} {AND} cd .. {AND} exit"
+        )
+        return output
+
+    def _run_project_command(self, command) -> list[type[str]]:
+        AND = ";"
+        if self._venv._platform == "Windows":
+            AND = "&&"
+        output: list[type[str]] = self._venv.run_command(
+            f"cd {self._dir_path} {AND} {command} {AND} cd .. {AND} exit"
+        )
+        return output
+
+    def _execute_venv_project_command(self, command) -> list[type[str]]:
+        AND = ";"
+        if self._venv._platform == "Windows":
+            AND = "&&"
+        output: list[type[str]] = self._venv.execute_venv_command(
+            f"cd {self._dir_path} {AND} {command} {AND} cd .. {AND} exit"
+        )
+        return output
+
+    def _run_venv_project_command(self, command) -> list[type[str]]:
+        AND = ";"
+        if self._venv._platform == "Windows":
+            AND = "&&"
+        output: list[type[str]] = self._venv.run_venv_command(
+            f"cd {self._dir_path} {AND} {command} {AND} cd .. {AND} exit"
+        )
+        return output
