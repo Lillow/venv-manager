@@ -48,3 +48,29 @@ class ManagerAngular(ManagerProject):
 
     def add_library(self, library_name: str) -> list[type[str]]:
         return self.run_angular_command(f" add {library_name}")
+
+
+# def listar_bibliotecas_angular(caminho_projeto):
+#     # Define o caminho do arquivo package.json
+#     caminho_package_json = Path(caminho_projeto) / "package.json"
+
+#     # Verifica se o arquivo package.json existe
+#     if not caminho_package_json.is_file():
+#         print("Arquivo package.json não encontrado no caminho especificado.")
+#         return
+
+#     # Lê o conteúdo do package.json
+#     with open(caminho_package_json, "r", encoding="utf-8") as arquivo:
+#         dados = json.load(arquivo)
+
+#     # Coleta as bibliotecas das seções "dependencies" e "devDependencies"
+#     dependencias = dados.get("dependencies", {})
+#     dependencias_dev = dados.get("devDependencies", {})
+
+#     print("Bibliotecas de Produção (dependencies):")
+#     for pacote, versao in dependencias.items():
+#         print(f" - {pacote}: {versao}")
+
+#     print("\nBibliotecas de Desenvolvimento (devDependencies):")
+#     for pacote, versao in dependencias_dev.items():
+#         print(f" - {pacote}: {versao}")
