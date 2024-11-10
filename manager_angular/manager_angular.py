@@ -40,5 +40,11 @@ class ManagerAngular(ManagerProject):
     def _install_angular(self) -> list[type[str]]:
         return self._execute_command("npm install -g @angular/cli")
 
+    def execute_angular_command(self, command: str) -> list[type[str]]:
+        return self._execute_project_command(f"ng {command}")
+
     def run_angular_command(self, command: str) -> list[type[str]]:
         return self._run_project_command(f"ng {command}")
+
+    def add_library(self, library_name: str) -> list[type[str]]:
+        return self.run_angular_command(f" add {library_name}")

@@ -31,9 +31,9 @@ def menu_angular() -> None:
             """,
         {
             1: ("Run Server", lambda: op.runserver(manager_angular)),
-            # 2: ("Install library", lambda: op.install_library(manager_angular)),
+            2: ("Add library", lambda: op.add_library(manager_angular)),
             # 3: ("List libraries", lambda: op.list_library(manager_angular)),
-            2: ("Run command", lambda: op.run_command(manager_angular)),
+            3: ("Run command", lambda: op.run_command(manager_angular)),
         },
     )
     menu_options_angular.choice()

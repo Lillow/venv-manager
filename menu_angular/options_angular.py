@@ -13,3 +13,11 @@ def run_command(project: ManagerAngular) -> None:
     print("\nRunning...\n")
     print_line(project.run_angular_command(command))
     pause_and_clear()
+
+
+def add_library(project: ManagerAngular):
+    clean_screen()
+    library_name: str = input("Library name: ")
+    print("Installing...\n")
+    print_line(project.add_library(library_name))
+    pause_and_clear()
