@@ -50,16 +50,16 @@ class ManagerProject(Manager, metaclass=ABCMeta):
         AND = ";"
         if self._venv._platform == "Windows":
             AND = "&&"
-        output: list[type[str]] = self._venv.execute_command(
+        output: list[type[str]] = self.execute_command(
             f"cd {self._dir_path} {AND} {command} {AND} cd .. {AND} exit"
         )
         return output
 
     def _run_project_command(self, command) -> list[type[str]]:
         AND = ";"
-        if self._venv._platform == "Windows":
+        if self._platform == "Windows":
             AND = "&&"
-        output: list[type[str]] = self._venv.run_command(
+        output: list[type[str]] = self._run_command(
             f"cd {self._dir_path} {AND} {command} {AND} cd .. {AND} exit"
         )
         return output
